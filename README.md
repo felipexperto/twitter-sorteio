@@ -1,5 +1,8 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+- Suba o server num terminal com: `node server.js` (porta 3001);
+- `npm start` em outra janela e acesse `http://localhost:3000`
+
 ## Available Scripts
 
 In the project directory, you can run:

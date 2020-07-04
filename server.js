@@ -25,7 +25,6 @@ app.get('/api/tweets', (req, res) => {
       const tweets = response.data.statuses;
       const retweets = tweets.map(tweet => tweet.retweeted_status && tweet);
       res.send(retweets);
-      // retweeted_status
     })
     .catch(err => res.send(err));
 });

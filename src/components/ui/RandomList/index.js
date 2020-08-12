@@ -1,40 +1,28 @@
 import React, { useEffect, Fragment } from 'react';
-// import axios from 'axios';
-import * as S from './styled';
+
+// import * as S from './styled';
 
 const RandomList = () => {
 
     useEffect(() => {
+        console.log(process.env.REACT_APP_APP_URL);
+        // const requestURI = 'from%3Avagastech&result_type=recent&count=12';
+        // const requestURI = 'TECHNO&result_type=recent&geocode=-23.6705893,-46.7713017km&granularity=neighborhood&count=12';
+        const requestParameters = '%23FreeFire&result_type=recent&count=12';
 
-        // const requestURI = 'https://api.twitter.com/1.1/search/tweets.json?q=@vagastech';
-        // const token = 'AAAAAAAAAAAAAAAAAAAAANGCAQEAAAAAQNeJ5YKYScqBaWpE4zGev%2Fv5jAU%3DekfxQiiiwlGoWgIrUJUs2UWk3kuVr1SXlYI0pE0UG4CCQHHdLp';
-
-
-
-        /*
-        axios({
-          url: requestURI,
-          method: 'get',
-          headers: { ...defaultHeaders },
-          // data: { ...getJobsDefaultParams },
-          timeout: 3000,
-          crossDomain: true,
-          responseType: 'json',
-          responseEncoding: 'utf8',
-        })
-        .then((response) => console.log(response))
-        .catch((error) => console.log(error));
-*/
-
+        fetch(`http://localhost:3001/api/tweets?q=${requestParameters}`)
+        .then(response => response.json()) 
+        .then(response => console.log(response))
+        .catch(err => {
+          console.error('Failed retrieving information', err); 
+        });
     }, []);
-
-
 
     return (
         <Fragment>
             
         </Fragment>
     )
-}
+};
 
 export default RandomList;

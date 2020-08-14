@@ -2,10 +2,9 @@ import styled from 'styled-components';
 
 const row = styled.div`
     align-items: center;
-    background-color: ${({ theme }) => (theme.main.colors.blue) };
+    background-color: #1da1f2;
     color: #fff;
     display: flex;
-    font-family: Helvetica Neue LT,Helvetica Neue,-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif;
     font-size: 20px;
     font-weight: 700;
     justify-content: center;

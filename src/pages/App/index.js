@@ -1,14 +1,20 @@
-import React, { Fragment } from 'react';
+import React from 'react';
+import { ThemeProvider } from "styled-components";
 
-import Header from 'components/layout/Header';
-import RandomList from 'components/ui/RandomList';
+import { GlobalStyles, theme } from 'styles';
+import { Footer, Header } from '../../components/layout';
+import { Container, RandomList } from 'components/ui';
 
 function App() {
   return (
-    <Fragment>
+    <ThemeProvider theme={theme}>
+      <GlobalStyles />
       <Header />
-      <RandomList />
-    </Fragment>
+        <Container>
+          <RandomList />
+        </Container>
+      <Footer />
+    </ThemeProvider>
   );
 }
 

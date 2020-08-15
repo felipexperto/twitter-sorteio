@@ -18,3 +18,5 @@
 - Débito técnico
   - [] Substituir o Axios por fetch;
   - [] Como colocar as variáveis de ambiente para o CRA e para o Node?
+  - [] Docker pra subir tudo de uma vez;
+  - [] Atualizar README.md;

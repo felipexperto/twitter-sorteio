@@ -7,10 +7,15 @@
     - [ ] Campo de data permitindo inserir um único dia para ficar alinhado com o propósito do app
     - [ ] Campo de hora de início e hora de término
     - [ ] Campo com número de resultados desejados c/ limite de 100: "Quantidade de resultados (limite de 100 tweets)"
-  - [ ] Estilizar títulos, hr
+  - [x] Estilizar títulos, hr, inputs
     - Ref: https://getbootstrap.com/docs/4.5/examples/checkout/, https://sorteador.com.br/
+  - [ ] Adicionar botão de Sortear (cantos arredondados estilo Twitter);
+  - [ ] Estilizar coluna da esquerda como o Twitter;
+  - [ ] Procurar por `list` ou `table` UIs para exibir os resultados
   - [ ] Testar acessibilidade
-
+  - [ ] Explicar a finalidade do app na seção Jumbotron
+  - [ ] UX Writing por Daniele
+  - [?] Selecionar um nome decente
 
 - Pesquisa
   - [] Como vai ser o deploy?
@@ -20,3 +25,4 @@
   - [] Como colocar as variáveis de ambiente para o CRA e para o Node?
   - [] Docker pra subir tudo de uma vez;
   - [] Atualizar README.md;
+  - [] Declarar todas as cores no theme;

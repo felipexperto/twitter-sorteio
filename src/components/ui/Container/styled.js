@@ -1,8 +1,5 @@
 import styled from 'styled-components/macro';
 
-
-
-
 const wrapper = ({ theme }) => {
   const { sizes } = theme.main;
   

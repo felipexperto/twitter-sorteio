@@ -1,15 +1,11 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
-// import * as S from './styled';
+import * as S from './styled';
 
-const Container = () => {
-
-
-    return (
-        <Fragment>
-            
-        </Fragment>
-    )
-};
+const Container = ({ children }) => (
+	<S.wrapperStyled>
+		{ children }
+	</S.wrapperStyled>
+	);
 
 export default Container;

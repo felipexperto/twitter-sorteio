@@ -14,6 +14,10 @@ const GlobalStyles = createGlobalStyle`
     font-size: ${theme.main.fonts.size};
   }
 
+  body {
+    background-color: ${({ backgroundColor }) => backgroundColor || theme.main.colors.white};
+  }
+
   * {
     box-sizing: border-box;
   }

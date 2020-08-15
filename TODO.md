@@ -7,6 +7,10 @@
     - [ ] Campo de data permitindo inserir um único dia para ficar alinhado com o propósito do app
     - [ ] Campo de hora de início e hora de término
     - [ ] Campo com número de resultados desejados c/ limite de 100: "Quantidade de resultados (limite de 100 tweets)"
+  - [ ] Estilizar títulos, hr
+    - Ref: https://getbootstrap.com/docs/4.5/examples/checkout/, https://sorteador.com.br/
+  - [ ] Testar acessibilidade
+
 
 - Pesquisa
   - [] Como vai ser o deploy?

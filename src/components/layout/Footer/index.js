@@ -2,9 +2,7 @@ import React, { Fragment } from 'react';
 // import * as S from './styled';
 
 const Footer = () => (
-	<Fragment>
-		Footer
-	</Fragment>
+	<Fragment />
 );
 
 export default Footer;

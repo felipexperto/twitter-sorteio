@@ -4,6 +4,7 @@
 */
 const colors = {
   blue: '#1da1f2',
+  lightblue: '#71c9f8',
   black: '#14171a',
   darkgray: '#657786',
   lightgray: '#aab8c2',

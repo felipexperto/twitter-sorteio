@@ -30,13 +30,6 @@ const ColumnsStyle = ({ theme }) => {
     display: flex;
     flex-direction: column;
 
-    > :nth-child(1) {
-      
-    }
-    > :nth-child(2) {
-      
-    }
-
     @media (min-width: ${sizes.tablet}px) {
       flex-direction: row;
     }
@@ -49,7 +42,7 @@ const ColumnStyle = ({ theme }) => {
   const { sizes } = theme.main;
   
   return `
-    padding: 4rem 0;
+    padding: 4rem;
     
     @media (min-width: ${sizes.tablet}px) {
       width: 50%;
@@ -59,14 +52,32 @@ const ColumnStyle = ({ theme }) => {
 const Column = styled.div`
   ${ColumnStyle};
 `;
+const ColumnFirst = styled(Column)`
+  background-color: ${({ theme }) => theme.main.colors.lightblue};
+  overflow: hidden;
+  position: relative;
 
+  svg {
+    height: 160vh;
+    position: absolute;
+    right: -50vh;
+    top: -30vh;
+    z-index: 0;
+  }
+`;
+const ColumnSecond = styled(Column)`
 
+`;
 
-
+const ContainerRelative = styled.div`
+  position: relative;
+`;
 
 export {
-  Column,
+  ColumnFirst,
+  ColumnSecond,
   Columns,
+  ContainerRelative,
   Jumbotron,
   Title,
   TitleDescription,

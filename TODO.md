@@ -8,7 +8,10 @@
     - [ ] Campo de hora de início e hora de término
     - [ ] Campo com número de resultados desejados c/ limite de 100: "Quantidade de resultados (limite de 100 tweets)"
   - [x] Estilizar títulos, hr, inputs
-    - Ref: https://getbootstrap.com/docs/4.5/examples/checkout/, https://sorteador.com.br/
+    - Ref: 
+      https://getbootstrap.com/docs/4.5/examples/checkout/
+      https://sorteador.com.br/
+      https://dribbble.com/shots/8433785-Account-List-UI-Design/attachments
   - [ ] Adicionar botão de Sortear (cantos arredondados estilo Twitter);
   - [ ] Estilizar coluna da esquerda como o Twitter;
   - [ ] Procurar por `list` ou `table` UIs para exibir os resultados

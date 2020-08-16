@@ -45,7 +45,11 @@ const ColumnStyle = ({ theme }) => {
     padding: 4rem;
     
     @media (min-width: ${sizes.tablet}px) {
+      padding: 2rem;
       width: 50%;
+    }
+    @media (min-width: ${sizes.desktop}px) {
+      padding: 4rem;
     }
   `
 }

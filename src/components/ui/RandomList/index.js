@@ -1,28 +1,37 @@
-import React, { useEffect, Fragment } from 'react';
+import React from 'react';
 
-// import * as S from './styled';
+import * as S from './styled';
 
 const RandomList = () => {
 
-    useEffect(() => {
-        console.log(process.env.REACT_APP_APP_URL);
-        // const requestURI = 'from%3Avagastech&result_type=recent&count=12';
-        // const requestURI = 'TECHNO&result_type=recent&geocode=-23.6705893,-46.7713017km&granularity=neighborhood&count=12';
-        const requestParameters = '%23FreeFire&result_type=recent&count=12';
-
-        fetch(`http://localhost:3001/api/tweets?q=${requestParameters}`)
-        .then(response => response.json()) 
-        .then(response => console.log(response))
-        .catch(err => {
-          console.error('Failed retrieving information', err); 
-        });
-    }, []);
-
-    return (
-        <Fragment>
-            
-        </Fragment>
-    )
+	return (
+		<S.Card>
+			<S.CardHeader>
+				<S.CardTitle>Perfil sorteado</S.CardTitle>
+				<S.CardWinnerImage src="https://api.adorable.io/avatars/285/abott@adorable.png" alt="" />
+				<S.CardWinnerId>@BarackObama</S.CardWinnerId>
+				<S.CardWinnerNick>Barack Obama</S.CardWinnerNick>
+				<S.CardTotalRetweets>De um total de XX retweets</S.CardTotalRetweets>
+			</S.CardHeader>
+			<S.CardBody>
+				AAAAA
+				<S.CardList>
+					<S.CardListItem>
+						<div>
+							<S.CardListItemImage src="" />
+						</div>
+						<div>
+							<S.CardListItemNick></S.CardListItemNick>
+							<S.CardListItemId></S.CardListItemId>
+						</div>
+						<div>
+							<S.CardListItemPosition></S.CardListItemPosition>
+						</div>
+					</S.CardListItem>
+				</S.CardList>
+			</S.CardBody>
+		</S.Card>
+	)
 };
 
 export default RandomList;

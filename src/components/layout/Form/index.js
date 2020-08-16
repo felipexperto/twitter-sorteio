@@ -10,7 +10,7 @@ const Form = () => (
         <S.FormFieldset>
           <label
             id="retweeted_from-label"
-            for="retweeted_from"
+            htmlFor="retweeted_from"
           >
             Retweetado de @
           </label>
@@ -25,7 +25,7 @@ const Form = () => (
         <S.FormFieldset>
           <label
             id="hashtag-label"
-            for="hashtag"
+            htmlFor="hashtag"
           >
             Contém a hashtag <span>(opcional)</span>
           </label>
@@ -42,7 +42,7 @@ const Form = () => (
         <S.FormFieldset>
           <label
             id="day-label"
-            for="day"
+            htmlFor="day"
           >
             Dia dos retweets
           </label>
@@ -57,7 +57,7 @@ const Form = () => (
         <S.FormFieldset>
           <label
             id="hour_begin-label"
-            for="hour_begin"
+            htmlFor="hour_begin"
           >
             Hora de início <span>(opcional)</span>
           </label>
@@ -71,7 +71,7 @@ const Form = () => (
         <S.FormFieldset>
           <label
             id="hour_end-label"
-            for="hour_end"
+            htmlFor="hour_end"
           >
             Hora de término <span>(opcional)</span>
           </label>
@@ -88,7 +88,7 @@ const Form = () => (
         <S.FormFieldset>
           <label
             id="amount_results-label"
-            for="amount_results"
+            htmlFor="amount_results"
           >
             Número máximo de resultados <span>(opcional)</span>
           </label>

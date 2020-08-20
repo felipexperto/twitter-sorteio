@@ -23,6 +23,7 @@
   - [x] Estilizar coluna da esquerda como o Twitter;
   - [x] Procurar por `list` ou `table` UIs para exibir os resultados
   - [ ] Placeholder para o local onde aparecem os resultados
+  - [ ] Toggle button para exibir ou ocultar inputs de horário
   - [ ] Testar acessibilidade
   - [ ] Explicar a finalidade do app na seção Jumbotron
   - [ ] UX Writing por Daniele

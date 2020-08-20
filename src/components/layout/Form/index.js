@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { theme } from 'styles';
+import { Tooltip } from 'components/ui';
 import * as S from './styled';
 
 const Form = () => (
@@ -7,103 +9,144 @@ const Form = () => (
     <S.Form novalidate>
       <S.FormSection hasDivisor="true">
         <S.FormSectionTitle>Informações do Tweet</S.FormSectionTitle>
-        <S.FormFieldset>
-          <label
-            id="retweeted_from-label"
-            htmlFor="retweeted_from"
-          >
-            Retweetado de @
-          </label>
-          <input
-            aria-labelledby="retweeted_from-label"
-            id="retweeted_from"
-            type="text"
-            name="retweeted_from"
-            placeholder="@BarackObama"
-          />
-        </S.FormFieldset>
-        <S.FormFieldset>
-          <label
+        <S.FormSectionFields>
+          <S.FormFieldset>
+            <S.FormFieldsetLabel
+              id="retweeted_from-label"
+              htmlFor="retweeted_from"
+            >
+              Retweetado de @
+            </S.FormFieldsetLabel>
+            <S.FormFieldsetInput
+              aria-labelledby="retweeted_from-label"
+              id="retweeted_from"
+              type="text"
+              name="retweeted_from"
+              placeholder="@NetflixBrasil"
+            />
+          </S.FormFieldset>
+          <S.FormFieldset>
+          <S.FormFieldsetLabel
             id="hashtag-label"
             htmlFor="hashtag"
           >
             Contém a hashtag <span>(opcional)</span>
-          </label>
-          <input
+            <Tooltip 
+              height="16"
+              width="16"
+            />
+          </S.FormFieldsetLabel>
+          <S.FormFieldsetInput
             aria-labelledby="hashtag-label"
             id="hashtag"
             type="text"
             name="hashtag"
+            placeholder="#HarryPotter"
           />
+          <S.FormFieldsetHelp
+            id="hashtag-help"
+          >
+            Campo opcional
+          </S.FormFieldsetHelp>
         </S.FormFieldset>
+        </S.FormSectionFields>
       </S.FormSection>
       <S.FormSection hasDivisor="true">
         <S.FormSectionTitle>Intervalo de tempo</S.FormSectionTitle>
-        <S.FormFieldset>
-          <label
-            id="day-label"
-            htmlFor="day"
-          >
-            Dia dos retweets
-          </label>
-          <input
-            aria-labelledby="day-label"
-            id="day"
-            type="text"
-            name="day"
-            required
-          />
+        <S.FormSectionFields>
+          <S.FormFieldset>
+            <S.FormFieldsetLabel
+              id="date-label"
+              htmlFor="date"
+            >
+              Data dos retweets
+            </S.FormFieldsetLabel>
+            <S.FormFieldsetInput
+              aria-labelledby="date-label"
+              id="date"
+              type="text"
+              name="date"
+              required
+              placeholder="DD/MM/AAAA"
+            />
+          </S.FormFieldset>
+          <S.FormFieldset>
+            {/* <!-- empty fieldset --> */}
+          </S.FormFieldset>
+          <S.FormFieldset>
+            <S.FormFieldsetLabel
+              id="hour_begin-label"
+              htmlFor="hour_begin"
+            >
+              Hora de início <span>(opcional)</span>
+            </S.FormFieldsetLabel>
+            <S.FormFieldsetInput
+              aria-labelledby="hour_begin-label"
+              id="hour_begin"
+              type="text"
+              name="hour_begin"
+              placeholder="HH:MM"
+            />
+            <S.FormFieldsetHelp
+              id="hour_begin-help"
+            >
+              Campo opcional
+            </S.FormFieldsetHelp>
+          </S.FormFieldset>
+          <S.FormFieldset>
+            <S.FormFieldsetLabel
+              id="hour_end-label"
+              htmlFor="hour_end"
+            >
+              Hora de término <span>(opcional)</span>
+            </S.FormFieldsetLabel>
+            <S.FormFieldsetInput
+              aria-labelledby="hour_end-label"
+              id="hour_end"
+              type="text"
+              name="hour_end"
+              placeholder="HH:MM"
+            />
+            <S.FormFieldsetHelp
+              id="hour_end-help"
+            >
+              Campo opcional
+            </S.FormFieldsetHelp>
         </S.FormFieldset>
-        <S.FormFieldset>
-          <label
-            id="hour_begin-label"
-            htmlFor="hour_begin"
-          >
-            Hora de início <span>(opcional)</span>
-          </label>
-          <input
-            aria-labelledby="hour_begin-label"
-            id="hour_begin"
-            type="text"
-            name="hour_begin"
-          />
-        </S.FormFieldset>
-        <S.FormFieldset>
-          <label
-            id="hour_end-label"
-            htmlFor="hour_end"
-          >
-            Hora de término <span>(opcional)</span>
-          </label>
-          <input
-            aria-labelledby="hour_end-label"
-            id="hour_end"
-            type="text"
-            name="hour_end"
-          />
-        </S.FormFieldset>
+        </S.FormSectionFields>
       </S.FormSection>
       <S.FormSection>
         <S.FormSectionTitle>Configurações de resultado</S.FormSectionTitle>
-        <S.FormFieldset>
-          <label
-            id="amount_results-label"
-            htmlFor="amount_results"
-          >
-            Número máximo de resultados <span>(opcional)</span>
-          </label>
-          <input
-            aria-labelledby="amount_results-label amount_results-help"
-            id="amount_results"
-            type="text"
-            name="amount_results"
-          />
-          <small
-            id="amount_results-help"
-          >
-            Limite de 100 resultados
-          </small>
-        </S.FormFieldset>
+        <S.FormSectionFields>
+          <S.FormFieldset>
+            <S.FormFieldsetLabel
+              id="amount_results-label"
+              htmlFor="amount_results"
+            >
+              Quantidade de resultados <span>(opcional)</span>
+            </S.FormFieldsetLabel>
+            <S.FormFieldsetInput
+              aria-labelledby="amount_results-label amount_results-help"
+              id="amount_results"
+              type="text"
+              name="amount_results"
+            />
+            <S.FormFieldsetHelp
+              id="amount_results-help"
+            >
+              Campo opcional<br/>
+              Limite de 100 resultados
+            </S.FormFieldsetHelp>
+          </S.FormFieldset>
+        </S.FormSectionFields>
+      </S.FormSection>
+      <S.FormSection alignment="center">
+        <S.ButtonSubmit>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path fill={theme.main.colors.white} d="M19,3H5C3.897,3,3,3.897,3,5v14c0,1.103,0.897,2,2,2h14c1.103,0,2-0.897,2-2V5C21,3.897,20.103,3,19,3z M8,17.5 c-0.828,0-1.5-0.672-1.5-1.5s0.672-1.5,1.5-1.5s1.5,0.672,1.5,1.5S8.828,17.5,8,17.5z M8,9.5C7.172,9.5,6.5,8.828,6.5,8 S7.172,6.5,8,6.5S9.5,7.172,9.5,8S8.828,9.5,8,9.5z M12,13.5c-0.828,0-1.5-0.672-1.5-1.5s0.672-1.5,1.5-1.5s1.5,0.672,1.5,1.5 S12.828,13.5,12,13.5z M16,17.5c-0.828,0-1.5-0.672-1.5-1.5s0.672-1.5,1.5-1.5s1.5,0.672,1.5,1.5S16.828,17.5,16,17.5z M16,9.5 c-0.828,0-1.5-0.672-1.5-1.5s0.672-1.5,1.5-1.5s1.5,0.672,1.5,1.5S16.828,9.5,16,9.5z"/>
+          </svg>
+          <span>Sortear</span>
+        </S.ButtonSubmit>
       </S.FormSection>
     </S.Form>
   </S.FormWrapper>

@@ -26,6 +26,8 @@
   - [ ] Testar acessibilidade
   - [ ] Explicar a finalidade do app na seção Jumbotron
   - [ ] UX Writing por Daniele
+  - [ ] Spin animation no logo na seção Jumbotron
+  - [ ] Google Analytics
   - [?] Selecionar um nome decente
 
 - Pesquisa
@@ -33,8 +35,9 @@
   - [] Como colocar as variáveis de ambiente para o CRA e para o Node?
 
 - Débito técnico
-  - [] Substituir o Axios por fetch;
-  - [] Docker pra subir tudo de uma vez;
-  - [] Atualizar README.md;
-  - [] Declarar todas as cores no theme;
-  - [] Trocar favicon;
+  - [ ] Substituir o Axios por fetch;
+  - [ ] Docker pra subir tudo de uma vez;
+  - [ ] Atualizar README.md;
+  - [ ] Declarar todas as cores no theme;
+  - [ ] Trocar favicon;
+  - [ ] Separar input e button de dentro do styled.js do form

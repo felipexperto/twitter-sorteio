@@ -1,11 +1,47 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { theme } from 'styles';
 import { Tooltip } from 'components/ui';
 import * as S from './styled';
 
-const Form = () => (
-  <S.FormWrapper>
+const Form = () => {
+  
+  const [user, setUser] = useState('');
+  const [hashtag, setHashtag] = useState('');
+  const [date, setDate] = useState('');
+  const [hourBegin, setHourBegin] = useState('');
+  const [hourEnd, setHourEnd] = useState('');
+  const [numberOfResults, setNumberOfResults] = useState('');
+
+  const handleChange = (event, stateHook, callback) => {
+    event.persist();
+    if (typeof callback === 'function') {
+      stateHook(() => callback(event));
+    } else {
+      stateHook(event.target.value);
+    }
+    
+  }
+
+  const handleChangeDate = () => {
+
+  }
+  const handleChangeHour = () => {
+
+  }
+  const callbackNumberOfResults = (event) => {
+    const currentValue = event.target.value;
+    const isMaxInputLengthValid = /^\s*-?[0-9]{0,3}$/.test(currentValue);
+
+    if (isMaxInputLengthValid) {
+      return (currentValue < 101) ? currentValue : 100;
+    } else {
+      return numberOfResults;
+    }
+  }
+
+  return (
+    <S.FormWrapper>
     <S.Form novalidate>
       <S.FormSection hasDivisor="true">
         <S.FormSectionTitle>Informações do Tweet</S.FormSectionTitle>
@@ -23,6 +59,8 @@ const Form = () => (
               type="text"
               name="retweeted_from"
               placeholder="@NetflixBrasil"
+              value={user}
+              onChange={e => handleChange(e, setUser)}
             />
           </S.FormFieldset>
           <S.FormFieldset>
@@ -42,6 +80,8 @@ const Form = () => (
             type="text"
             name="hashtag"
             placeholder="#HarryPotter"
+            value={hashtag}
+            onChange={e => handleChange(e, setHashtag)}
           />
           <S.FormFieldsetHelp
             id="hashtag-help"
@@ -68,6 +108,8 @@ const Form = () => (
               name="date"
               required
               placeholder="DD/MM/AAAA"
+              value={date}
+              onChange={e => handleChange(e, setDate)}
             />
           </S.FormFieldset>
           <S.FormFieldset>
@@ -86,6 +128,8 @@ const Form = () => (
               type="text"
               name="hour_begin"
               placeholder="HH:MM"
+              value={hourBegin}
+              onChange={e => handleChange(e, setHourBegin)}
             />
             <S.FormFieldsetHelp
               id="hour_begin-help"
@@ -106,6 +150,8 @@ const Form = () => (
               type="text"
               name="hour_end"
               placeholder="HH:MM"
+              value={hourEnd}
+              onChange={e => handleChange(e, setHourEnd)}
             />
             <S.FormFieldsetHelp
               id="hour_end-help"
@@ -128,8 +174,11 @@ const Form = () => (
             <S.FormFieldsetInput
               aria-labelledby="amount_results-label amount_results-help"
               id="amount_results"
-              type="text"
+              max="100"
               name="amount_results"
+              onChange={e => handleChange(e, setNumberOfResults, callbackNumberOfResults)}
+              type="number"
+              value={numberOfResults}
             />
             <S.FormFieldsetHelp
               id="amount_results-help"
@@ -150,6 +199,7 @@ const Form = () => (
       </S.FormSection>
     </S.Form>
   </S.FormWrapper>
-)
+  )
+}
 
 export default Form;

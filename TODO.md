@@ -9,21 +9,24 @@
     - [x] Campo com número de resultados desejados c/ limite de 100: "Quantidade de resultados (limite de 100 tweets)"
   - [ ] Criar validações
     - [ ] Validação de hashtag e username. Não podem ter espaços
+    - [x] Máscara de data
     - [ ] Validação de data
+    - [x] Máscara de hora
     - [ ] Validação de hora
-    - [ ] Validação de somente numeros
+    - [x] Validação de somente numeros
   - [ ] Utilizar contextAPI para compartilhar estado entre componentes
   - [x] Estilizar títulos, hr, inputs
     - Ref: 
       https://getbootstrap.com/docs/4.5/examples/checkout/
       https://sorteador.com.br/
       https://dribbble.com/shots/8433785-Account-List-UI-Design/attachments
-  - [ ] Adicionar botão de Sortear (cantos arredondados estilo Twitter);
+  - [x] Adicionar botão de Sortear (cantos arredondados estilo Twitter);
   - [ ] Alterar texto do botão para 'Refazer Sorteio' ou 'Sortear novamente' após o primeiro sorteio
   - [x] Estilizar coluna da esquerda como o Twitter;
   - [x] Procurar por `list` ou `table` UIs para exibir os resultados
   - [ ] Placeholder para o local onde aparecem os resultados
-  - [ ] Toggle button para exibir ou ocultar inputs de horário
+  - [x] Toggle button para exibir ou ocultar inputs de horário
+    - [ ] Colocar label de ativado/desativado
   - [ ] Testar acessibilidade
   - [ ] Explicar a finalidade do app na seção Jumbotron
   - [ ] UX Writing por Daniele

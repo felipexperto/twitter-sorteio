@@ -50,6 +50,7 @@ const FormFieldset = styled.fieldset`
 const FormFieldsetLabel = styled.label`
   display: inline-block;
   margin-bottom: .5rem;
+  min-height: 20px;
 
   & > span {
     ${visuallyHidden}
@@ -65,8 +66,97 @@ const FormFieldsetInput = styled.input`
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
+  min-height: 40px;
   padding: .375rem .75rem;
   width: 100%;
+`;
+
+const FormFieldsetSwitch = styled.label`
+  display: block;
+  height: 34px;
+  position: relative;
+  width: 60px;
+
+  > input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+
+    &:checked + .slider {
+      background-color: #2196F3;
+    }
+    
+    &:focus + .slider {
+      box-shadow: 0 0 1px #2196F3;
+    }
+    
+    &:checked + .slider:before {
+      -webkit-transform: translateX(26px);
+      -ms-transform: translateX(26px);
+      transform: translateX(26px);
+    }
+  }
+
+  > span {
+    border-radius: 34px;
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+
+    &:before {
+      border-radius: 50%;
+      position: absolute;
+      content: "";
+      height: 26px;
+      width: 26px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+  }
+  
+
+  
+
+ 
+
+`;
+
+const FormFieldsetInputGroup = styled.div`
+  align-items: stretch;
+  display: flex;
+  flex-wrap: nowrap;
+  width: 100%;
+
+  > input {
+    border-left-width: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+`;
+
+const FormFieldsetInputIcon = styled.div`
+  align-items: center;
+  background-color: #e9ecef;
+  border: 1px solid #ced4da;
+  border-radius: .25rem 0 0 .25rem;
+  color: #495057;
+  display: flex;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  margin-bottom: 0;
+  padding: .375rem .75rem;
+  text-align: center;
+  white-space: nowrap;
 `;
 
 const FormFieldsetHelp = styled.small`
@@ -104,6 +194,9 @@ export {
   FormFieldset,
   FormFieldsetHelp,
   FormFieldsetInput,
+  FormFieldsetInputGroup,
+  FormFieldsetInputIcon,
+  FormFieldsetSwitch,
   FormFieldsetLabel,
   FormSection,
   FormSectionFields,

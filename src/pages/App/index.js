@@ -9,7 +9,7 @@ import * as S from './styled';
 function App() {
 
 	useEffect(() => {
-		console.log(process.env.REACT_APP_APP_URL);
+		console.log('process.env.REACT_APP_APP_URL', process.env.REACT_APP_APP_URL);
 		// const requestURI = 'from%3Avagastech&result_type=recent&count=12';
 		// const requestURI = 'TECHNO&result_type=recent&geocode=-23.6705893,-46.7713017km&granularity=neighborhood&count=12';
 		const requestParameters = '%23FreeFire&result_type=recent&count=12';

@@ -11,6 +11,8 @@ const colors = {
   extralightgray: '#e1e8ed',
   extraextralightgray: '#f5f8fa', // really, Twitter?
   white: '#fff',
+  red: '#dc3545',
+  green: '#28a745',
 };
 
 /* Fonts */

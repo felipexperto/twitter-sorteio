@@ -71,63 +71,80 @@ const FormFieldsetInput = styled.input`
   width: 100%;
 `;
 
-const FormFieldsetSwitch = styled.label`
-  display: block;
+const FormFieldsetSwitchWrapper = styled.div`
+  align-items: center;
+  display: flex;
+`;
+
+const FormFieldsetSwitchComponent = styled.label`
+  display: inline-block;
   height: 34px;
   position: relative;
   width: 60px;
 
-  > input {
+  .input--checkbox {
+    height: 0;
     opacity: 0;
     width: 0;
-    height: 0;
 
     &:checked + .slider {
-      background-color: #2196F3;
+      background-color: ${({ theme }) => theme.main.colors.green };
     }
     
     &:focus + .slider {
-      box-shadow: 0 0 1px #2196F3;
+      box-shadow: 0 0 1px ${({ theme }) => theme.main.colors.green };
     }
     
     &:checked + .slider:before {
-      -webkit-transform: translateX(26px);
-      -ms-transform: translateX(26px);
       transform: translateX(26px);
     }
   }
 
-  > span {
+  .slider {
+    background-color: ${({ theme }) => theme.main.colors.red };
     border-radius: 34px;
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
     bottom: 0;
-    background-color: #ccc;
-    -webkit-transition: .4s;
+    cursor: pointer;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
     transition: .4s;
 
     &:before {
+      background-color: ${({ theme }) => theme.main.colors.white };
       border-radius: 50%;
-      position: absolute;
+      bottom: 4px;
       content: "";
       height: 26px;
-      width: 26px;
       left: 4px;
-      bottom: 4px;
-      background-color: white;
-      -webkit-transition: .4s;
+      position: absolute;
       transition: .4s;
+      width: 26px;
+      z-index: 2;
     }
   }
-  
 
-  
+  .icon {
+    display: block;
+    fill: ${({ theme }) => theme.main.colors.white };
+    line-height: 1em;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
 
- 
+    &--active {
+      left: 6px;
+    }
+    &--disable {
+      right: 6px;
+    }
+  }
+`;
 
+const FormFieldsetSwitchText = styled.div`
+  margin-left: 10px;
 `;
 
 const FormFieldsetInputGroup = styled.div`
@@ -137,9 +154,9 @@ const FormFieldsetInputGroup = styled.div`
   width: 100%;
 
   > input {
+    border-bottom-left-radius: 0;
     border-left-width: 0;
     border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
   }
 `;
 
@@ -196,7 +213,9 @@ export {
   FormFieldsetInput,
   FormFieldsetInputGroup,
   FormFieldsetInputIcon,
-  FormFieldsetSwitch,
+  FormFieldsetSwitchComponent,
+  FormFieldsetSwitchText,
+  FormFieldsetSwitchWrapper,
   FormFieldsetLabel,
   FormSection,
   FormSectionFields,

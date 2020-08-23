@@ -124,9 +124,9 @@ const Form = () => {
               type="text"
               name="date"
               required
+              onChange={e => handleChange(e, setDate, callbackDate)}
               placeholder="DD/MM/AAAA"
               value={date}
-              onChange={e => handleChange(e, setDate, callbackDate)}
             />
           </S.FormFieldset>
           <S.FormFieldset>
@@ -136,14 +136,30 @@ const Form = () => {
             >
               Selecionar horário específico
             </S.FormFieldsetLabel>
-            <S.FormFieldsetSwitch>
-              <input
-                checked={hours}
-                onChange={() => setHours(!hours)}
-                type="checkbox"
-              />
-              <span class="slider round"></span>
-            </S.FormFieldsetSwitch>
+            <S.FormFieldsetSwitchWrapper>
+              <S.FormFieldsetSwitchComponent>
+                <input
+                  className="input--checkbox"
+                  checked={hours}
+                  onChange={() => setHours(!hours)}
+                  type="checkbox"
+                />
+                <span class="slider"></span>
+                <span class="icon icon--disable">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <path d="M16.192 6.344L11.949 10.586 7.707 6.344 6.293 7.758 10.535 12 6.293 16.242 7.707 17.656 11.949 13.414 16.192 17.656 17.606 16.242 13.364 12 17.606 7.758z"/>
+                  </svg>
+                </span>
+                <span class="icon icon--active">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <path d="M10 15.586L6.707 12.293 5.293 13.707 10 18.414 19.707 8.707 18.293 7.293z"/>
+                  </svg>
+                </span>
+              </S.FormFieldsetSwitchComponent>
+              <S.FormFieldsetSwitchText>
+                {hours ? 'Ativado' : 'Desativado'}
+              </S.FormFieldsetSwitchText>
+            </S.FormFieldsetSwitchWrapper>
           </S.FormFieldset>
           {(hours) ? (
             <Fragment>
@@ -164,11 +180,6 @@ const Form = () => {
                   type="text"
                   value={hourBegin}
                 />
-                <S.FormFieldsetHelp
-                  id="hour_begin-help"
-                >
-                  Campo opcional
-                </S.FormFieldsetHelp>
               </S.FormFieldset>
               <S.FormFieldset>
                 <S.FormFieldsetLabel
@@ -187,11 +198,6 @@ const Form = () => {
                   type="text"
                   value={hourEnd}
                 />
-                <S.FormFieldsetHelp
-                  id="hour_end-help"
-                >
-                  Campo opcional
-                </S.FormFieldsetHelp>
               </S.FormFieldset>
             </Fragment>
           ) : '' }

@@ -32,6 +32,8 @@
   - [ ] UX Writing por Daniele
   - [ ] Spin animation no logo na seção Jumbotron
   - [ ] Google Analytics
+  - [?] Dark Theme
+  - [?] Manter o botão desabilitado até que os campos obrigatórios sejam preenchidos
   - [?] Selecionar um nome decente
 
 - Pesquisa
@@ -39,6 +41,7 @@
   - [] Como colocar as variáveis de ambiente para o CRA e para o Node?
 
 - Débito técnico
+  - [ ] Testes unitários
   - [ ] Substituir o Axios por fetch;
   - [ ] Docker pra subir tudo de uma vez;
   - [ ] Atualizar README.md;

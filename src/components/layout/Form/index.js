@@ -79,10 +79,6 @@ const Form = () => {
             htmlFor="hashtag"
           >
             Contém a hashtag <span>(opcional)</span>
-            <Tooltip 
-              height="16"
-              width="16"
-            />
           </S.FormFieldsetLabel>
           <S.FormFieldsetInputGroup>
             <S.FormFieldsetInputIcon>
@@ -103,7 +99,7 @@ const Form = () => {
           <S.FormFieldsetHelp
             id="hashtag-help"
           >
-            Campo opcional
+            Opcional
           </S.FormFieldsetHelp>
         </S.FormFieldset>
         </S.FormSectionFields>
@@ -211,10 +207,10 @@ const Form = () => {
               id="amount_results-label"
               htmlFor="amount_results"
             >
-              Quantidade de resultados <span>(opcional até 100 resultados)</span>
+              Quantidade de resultados <span>(opcional e até 100 itens)</span>
             </S.FormFieldsetLabel>
             <S.FormFieldsetInput
-              aria-labelledby="amount_results-label amount_results-help"
+              aria-labelledby="amount_results-label"
               id="amount_results"
               max="100"
               name="amount_results"
@@ -225,8 +221,7 @@ const Form = () => {
             <S.FormFieldsetHelp
               id="amount_results-help"
             >
-              Campo opcional<br/>
-              Limite de 100 resultados
+              Opcional e até 100 itens
             </S.FormFieldsetHelp>
           </S.FormFieldset>
         </S.FormSectionFields>

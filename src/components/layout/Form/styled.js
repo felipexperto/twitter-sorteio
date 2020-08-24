@@ -177,9 +177,11 @@ const FormFieldsetInputIcon = styled.div`
 `;
 
 const FormFieldsetHelp = styled.small`
-  color: #6c757d;
+  color: ${({ theme, errorMessage }) => errorMessage ? theme.main.colors.red : theme.main.colors.darkgray};
   font-size: 80%;
   font-weight: 400;
+  min-height: 20px;
+  padding-top: 2px;
 `;
 
 const ButtonSubmit = styled.button`

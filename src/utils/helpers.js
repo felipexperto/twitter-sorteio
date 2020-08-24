@@ -1,8 +1,5 @@
-
-
 const dateMask = (args) => {
-  const { event, keyCode, targetValue } = args;
-  if (keyCode === 8 || keyCode === 46) return;
+  const { event, targetValue } = args;
 
   const v = targetValue;
   let r = v.replace(/\D/g, '');
@@ -20,8 +17,7 @@ const dateMask = (args) => {
 };
 
 const hourMask = (args) => {
-  const { event, keyCode, targetValue } = args;
-  if (keyCode === 8 || keyCode === 46) return;
+  const { event, targetValue } = args;
 
   const v = targetValue;
   let r = v.replace(/\D/g, '');
@@ -34,8 +30,25 @@ const hourMask = (args) => {
   event.target.value = r;
 };
 
+const maxValueNumberMask = (args) => {
+  const { event, targetValue, maxValue } = args;
+
+  const currentValue = targetValue;
+  const isMaxInputLengthValid = /^\s*-?[0-9]{0,3}$/.test(currentValue);
+
+  console.log(currentValue);
+  console.log(isMaxInputLengthValid);
+
+  if (isMaxInputLengthValid) {
+    event.target.value = (currentValue <= maxValue) ? currentValue : maxValue;
+  } else {
+    const newValue = currentValue.split('').slice(0,-1).join('');
+    event.target.value = newValue;
+  }
+}
 
 export {
   dateMask,
   hourMask,
+  maxValueNumberMask,
 }

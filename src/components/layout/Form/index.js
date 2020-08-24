@@ -2,50 +2,72 @@ import React, { Fragment, useState, useEffect } from 'react';
 
 import { theme } from 'styles';
 import { Tooltip } from 'components/ui';
-import { dateMask, hourMask } from 'utils/helpers';
+import { dateMask, hourMask, maxValueNumberMask } from 'utils/helpers';
 import * as S from './styled';
 
 const Form = () => {
   
-  const [user, setUser] = useState('');
-  const [hashtag, setHashtag] = useState('');
-  const [date, setDate] = useState('');
-  const [hourBegin, setHourBegin] = useState('');
-  const [hourEnd, setHourEnd] = useState('');
-  const [hours, setHours] = useState(false);
-  const [numberOfResults, setNumberOfResults] = useState('');
+  const [values, setValues] = useState({});
+  const [errors, setErrors] = useState({});
 
   const handleChange = (event, stateHook, callback) => {
     event.persist();
-    if (typeof callback === 'function') {
-      stateHook(() => callback(event));
-    } else {
-      stateHook(event.target.value);
+    if (typeof callback === 'function') callback(event);
+    stateHook(newValues => ({ ...newValues, [event.target.name]: event.target.value }));
+  }
+  const handleSubmit = (e, values, setErrors) => {
+    e.preventDefault();
+    console.log(values);
+    if (!values.retweeted_from) {
+      setErrors(newValues => ({...newValues, retweeted_from: 'Insira um usuário'}));
     }
+    
+    if (!values.hashtag) {
+      setErrors(newValues => ({...newValues, hashtag: 'Insira uma hashtag'}));
+    } else {
+      // verificar se existem espaços
+      // se existem caracteres especiais
+    }
+    
+    if (!values.date) {
+      setErrors(newValues => ({...newValues, date: 'Insira uma data'}));
+    } else if (values.date < 10) {
+      setErrors(newValues => ({...newValues, date: 'Insira uma data válida'}));
+    } else {
+      // verificar se dia <= 31
+      // se mes <= 12
+      // se ano <= ano atual
+      // se data completa <= hoje
+    }
+
+    if (values.hours) {
+      if (!values.hour_begin) {
+        setErrors(newValues => ({...newValues, hour_begin: 'Insira um horário'}));
+      } else {
+        // verificar se horas <= 12
+        // se minutos <= 59
+      }
+      if (!values.hour_end) {
+        setErrors(newValues => ({...newValues, hour_end: 'Insira um horário'}));
+      } else {
+        // verificar se horas <= 12
+        // se minutos <= 59
+      }
+    }
+    
+
+    // se nao houverem erros, retornar valores que serão utilizados
+    // como parametros na chamada assíncrona no App.JS
+
   }
 
-  const callbackDate = (event) => {
-    const { keyCode, target } = event;
-    return dateMask({ event, keyCode, targetValue: target.value });
-  }
-  const callbackHour = (event) => {
-    const { keyCode, target } = event;
-    return hourMask({ event, keyCode, targetValue: target.value });
-  }
-  const callbackNumberOfResults = (event) => {
-    const currentValue = event.target.value;
-    const isMaxInputLengthValid = /^\s*-?[0-9]{0,3}$/.test(currentValue);
-
-    if (isMaxInputLengthValid) {
-      return (currentValue < 101) ? currentValue : 100;
-    } else {
-      return numberOfResults;
-    }
-  }
+  const callbackDate = event => dateMask({ event, targetValue: event.target.value });
+  const callbackHour = event => hourMask({ event, targetValue: event.target.value });
+  const callbackNumberOfResults = event => maxValueNumberMask({ event, targetValue: event.target.value, maxValue: 100 });
 
   return (
     <S.FormWrapper>
-    <S.Form novalidate>
+    <S.Form noValidate onSubmit={e => handleSubmit(e, values, setErrors)}>
       <S.FormSection hasDivisor="true">
         <S.FormSectionTitle>Informações do Tweet</S.FormSectionTitle>
         <S.FormSectionFields>
@@ -65,13 +87,19 @@ const Form = () => {
               <S.FormFieldsetInput
                 aria-labelledby="retweeted_from-label"
                 id="retweeted_from"
-                type="text"
                 name="retweeted_from"
+                onChange={e => handleChange(e, setValues)}
                 placeholder="NetflixBrasil"
-                value={user}
-                onChange={e => handleChange(e, setUser)}
+                type="text"
+                value={values.retweeted_from || ''}
               />
             </S.FormFieldsetInputGroup>
+            <S.FormFieldsetHelp
+              id="hashtag-help"
+              errorMessage={!!errors.retweeted_from}
+            >
+              {(errors.retweeted_from) && errors.retweeted_from}
+            </S.FormFieldsetHelp>
           </S.FormFieldset>
           <S.FormFieldset>
           <S.FormFieldsetLabel
@@ -92,14 +120,15 @@ const Form = () => {
               type="text"
               name="hashtag"
               placeholder="HarryPotter"
-              value={hashtag}
-              onChange={e => handleChange(e, setHashtag)}
+              value={values.hashtag || ''}
+              onChange={e => handleChange(e, setValues)}
             />
           </S.FormFieldsetInputGroup>
           <S.FormFieldsetHelp
             id="hashtag-help"
+            errorMessage={!!errors.hashtag}
           >
-            Opcional
+            {(errors.hashtag) && errors.hashtag}
           </S.FormFieldsetHelp>
         </S.FormFieldset>
         </S.FormSectionFields>
@@ -117,47 +146,66 @@ const Form = () => {
             <S.FormFieldsetInput
               aria-labelledby="date-label"
               id="date"
-              type="text"
               name="date"
-              required
-              onChange={e => handleChange(e, setDate, callbackDate)}
+              onChange={e => handleChange(e, setValues, callbackDate)}
               placeholder="DD/MM/AAAA"
-              value={date}
+              type="text"
+              required
+              value={values.date || ''}
             />
+            <S.FormFieldsetHelp
+              id="date-help"
+              errorMessage={!!errors.date}
+            >
+              {(errors.date) && errors.date}
+            </S.FormFieldsetHelp>
           </S.FormFieldset>
           <S.FormFieldset>
             <S.FormFieldsetLabel
               id="hours-label"
               htmlFor="hours"
             >
-              Selecionar horário específico
+              Selecionar horário
             </S.FormFieldsetLabel>
             <S.FormFieldsetSwitchWrapper>
               <S.FormFieldsetSwitchComponent>
                 <input
+                  checked={values.hours || false}
                   className="input--checkbox"
-                  checked={hours}
-                  onChange={() => setHours(!hours)}
+                  id="hours"
+                  name="hours"
+                  onChange={e => {
+                    const hoursEvent = { 
+                      event: {
+                        target: {
+                          name: e.target.name,
+                          value: !values.hours,
+                        },
+                        persist: e.persist,
+                      }
+                    };
+                    handleChange(hoursEvent.event, setValues)
+                  }}
                   type="checkbox"
                 />
-                <span class="slider"></span>
-                <span class="icon icon--disable">
+                <span className="slider"></span>
+                <span className="icon icon--disable">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                     <path d="M16.192 6.344L11.949 10.586 7.707 6.344 6.293 7.758 10.535 12 6.293 16.242 7.707 17.656 11.949 13.414 16.192 17.656 17.606 16.242 13.364 12 17.606 7.758z"/>
                   </svg>
                 </span>
-                <span class="icon icon--active">
+                <span className="icon icon--active">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                     <path d="M10 15.586L6.707 12.293 5.293 13.707 10 18.414 19.707 8.707 18.293 7.293z"/>
                   </svg>
                 </span>
               </S.FormFieldsetSwitchComponent>
               <S.FormFieldsetSwitchText>
-                {hours ? 'Ativado' : 'Desativado'}
+                {values.hours ? 'Ativado' : 'Desativado'}
               </S.FormFieldsetSwitchText>
             </S.FormFieldsetSwitchWrapper>
           </S.FormFieldset>
-          {(hours) ? (
+          {(values.hours) ? (
             <Fragment>
               <S.FormFieldset>
                 <S.FormFieldsetLabel
@@ -171,11 +219,17 @@ const Form = () => {
                   id="hour_begin"
                   maxLength="5"
                   name="hour_begin"
-                  onChange={e => handleChange(e, setHourBegin, callbackHour)}
+                  onChange={e => handleChange(e, setValues, callbackHour)}
                   placeholder="HH:MM"
                   type="text"
-                  value={hourBegin}
+                  value={values.hourBegin || ''}
                 />
+                <S.FormFieldsetHelp
+                  id="hour_begin-help"
+                  errorMessage={!!errors.hour_begin}
+                >
+                  {(errors.hour_begin) && errors.hour_begin}
+                </S.FormFieldsetHelp>
               </S.FormFieldset>
               <S.FormFieldset>
                 <S.FormFieldsetLabel
@@ -189,11 +243,17 @@ const Form = () => {
                   id="hour_end"
                   maxLength="5"
                   name="hour_end"
-                  onChange={e => handleChange(e, setHourEnd, callbackHour)}
+                  onChange={e => handleChange(e, setValues, callbackHour)}
                   placeholder="HH:MM"
                   type="text"
-                  value={hourEnd}
+                  value={values.hourEnd || ''}
                 />
+                <S.FormFieldsetHelp
+                  id="hour_end-help"
+                  errorMessage={!!errors.hour_end}
+                >
+                  {(errors.hour_end) && errors.hour_end}
+                </S.FormFieldsetHelp>
               </S.FormFieldset>
             </Fragment>
           ) : '' }
@@ -207,16 +267,16 @@ const Form = () => {
               id="amount_results-label"
               htmlFor="amount_results"
             >
-              Quantidade de resultados <span>(opcional e até 100 itens)</span>
+              Quantidade de itens <span>(opcional e até 100 itens)</span>
             </S.FormFieldsetLabel>
             <S.FormFieldsetInput
               aria-labelledby="amount_results-label"
               id="amount_results"
               max="100"
               name="amount_results"
-              onChange={e => handleChange(e, setNumberOfResults, callbackNumberOfResults)}
+              onChange={e => handleChange(e, setValues, callbackNumberOfResults)}
               type="number"
-              value={numberOfResults}
+              value={values.amount_results || ''}
             />
             <S.FormFieldsetHelp
               id="amount_results-help"

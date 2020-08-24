@@ -26,7 +26,7 @@
   - [x] Procurar por `list` ou `table` UIs para exibir os resultados
   - [ ] Placeholder para o local onde aparecem os resultados
   - [x] Toggle button para exibir ou ocultar inputs de horário
-    - [ ] Colocar label de ativado/desativado
+    - [x] Colocar label de ativado/desativado
   - [ ] Testar acessibilidade
   - [ ] Explicar a finalidade do app na seção Jumbotron
   - [ ] UX Writing por Daniele

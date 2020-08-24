@@ -7,7 +7,7 @@ import { Container, RandomList } from 'components/ui';
 import * as S from './styled';
 
 function App() {
-
+/*
 	useEffect(() => {
 		console.log('process.env.REACT_APP_APP_URL', process.env.REACT_APP_APP_URL);
 		// const requestURI = 'from%3Avagastech&result_type=recent&count=12';
@@ -19,9 +19,12 @@ function App() {
 		.then(response => console.log(response))
 		.catch(err => {
 			console.error('Failed retrieving information', err); 
-		});
+    });
+    
+    // embaralhar resultados e exibir na lista;
+    
 	}, []);
-
+*/
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles backgroundColor={theme.main.colors.extraextralightgray} />

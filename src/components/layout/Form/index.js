@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect } from 'react';
 
 import { theme } from 'styles';
 import { Tooltip } from 'components/ui';
-import { dateMask, hourMask, maxValueNumberMask } from 'utils/helpers';
+import { dateMask, hashtagMask, hourMask, maxValueNumberMask, usernameMask } from 'utils/helpers';
 import * as S from './styled';
 
 const Form = () => {
@@ -17,27 +17,53 @@ const Form = () => {
   }
   const handleSubmit = (e, values, setErrors) => {
     e.preventDefault();
+    setErrors(() => {}); // reset errors state
+
     console.log(values);
+
     if (!values.retweeted_from) {
       setErrors(newValues => ({...newValues, retweeted_from: 'Insira um usuário'}));
     }
     
     if (!values.hashtag) {
       setErrors(newValues => ({...newValues, hashtag: 'Insira uma hashtag'}));
-    } else {
-      // verificar se existem espaços
-      // se existem caracteres especiais
     }
     
     if (!values.date) {
       setErrors(newValues => ({...newValues, date: 'Insira uma data'}));
-    } else if (values.date < 10) {
+    } else if (values.date.length < 10) {
       setErrors(newValues => ({...newValues, date: 'Insira uma data válida'}));
     } else {
-      // verificar se dia <= 31
-      // se mes <= 12
-      // se ano <= ano atual
-      // se data completa <= hoje
+      const currentFullDate = new Date();
+      const currentDay = parseInt(currentFullDate.getDate(), 10);
+      const currentMonth = parseInt(currentFullDate.getMonth(), 10) + 1;
+      const currentYear = parseInt(currentFullDate.getFullYear(), 10);
+  
+      const inputFullDate = values.date.split('/');
+      const inputDay = parseInt(inputFullDate[0], 10);
+      const inputMonth = parseInt(inputFullDate[1], 10);
+      const inputYear = parseInt(inputFullDate[2], 10);
+
+      const inputYearNewerThanCurrentYear = inputYear > currentYear;
+      const inputMonthNewerThanCurrentMonth = inputMonth > currentMonth;
+      const inputDayNewerThanCurrentDay = inputDay > currentDay;
+
+      const sameYear = inputYear === currentYear;
+      const sameMonth = inputMonth === currentMonth;
+
+      const twitterYearCreation = 2006;
+
+      if (inputYear < twitterYearCreation) setErrors(newValues => ({...newValues, date: 'Insira um ano válido'}));
+      if (inputMonth > 12) setErrors(newValues => ({...newValues, date: 'Insira um mês válido'}));
+      if (inputDay > 31) setErrors(newValues => ({...newValues, date: 'Insira um dia válido'}));
+
+      if (inputYearNewerThanCurrentYear) {
+        setErrors(newValues => ({...newValues, date: 'Insira um ano válido'}));
+      } else if (sameYear && inputMonthNewerThanCurrentMonth) {
+        setErrors(newValues => ({...newValues, date: 'Insira um mês válido'}));
+      } else if (sameYear && sameMonth && inputDayNewerThanCurrentDay) {
+        setErrors(newValues => ({...newValues, date: 'Insira um dia válido'}));
+      }
     }
 
     if (values.hours) {
@@ -63,7 +89,10 @@ const Form = () => {
 
   const callbackDate = event => dateMask({ event, targetValue: event.target.value });
   const callbackHour = event => hourMask({ event, targetValue: event.target.value });
+  const callbackHashtag = event => event.target.value = hashtagMask(event.target.value);
+  const callbackUsername = event => event.target.value = usernameMask(event.target.value);
   const callbackNumberOfResults = event => maxValueNumberMask({ event, targetValue: event.target.value, maxValue: 100 });
+
 
   return (
     <S.FormWrapper>
@@ -87,8 +116,9 @@ const Form = () => {
               <S.FormFieldsetInput
                 aria-labelledby="retweeted_from-label"
                 id="retweeted_from"
+                maxLength="15"
                 name="retweeted_from"
-                onChange={e => handleChange(e, setValues)}
+                onChange={e => handleChange(e, setValues, callbackUsername)}
                 placeholder="NetflixBrasil"
                 type="text"
                 value={values.retweeted_from || ''}
@@ -121,7 +151,7 @@ const Form = () => {
               name="hashtag"
               placeholder="HarryPotter"
               value={values.hashtag || ''}
-              onChange={e => handleChange(e, setValues)}
+              onChange={e => handleChange(e, setValues, callbackHashtag)}
             />
           </S.FormFieldsetInputGroup>
           <S.FormFieldsetHelp

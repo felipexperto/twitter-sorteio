@@ -47,8 +47,38 @@ const maxValueNumberMask = (args) => {
   }
 }
 
+
+const removeSpecialCharacters = (text) => {
+  const from = 'ãàáäâèéëêìíïîòóöôùúüûñç·/,:;';
+  const to = 'aaaaaeeeeiiiioooouuuunc-----';
+  const regx = new RegExp(from.split('').join('|'), 'g');
+
+  return text
+    .toString()
+    .replace(regx, result => to.charAt(from.indexOf(result)));
+}
+
+const slugify = (text) => {
+  return removeSpecialCharacters(text)
+    .toLowerCase()
+    .replace(/_+/g, '-')
+    .replace(/\s+/g, '-')
+    .replace(/_/g, '-')
+    .replace(/[^\w-]+/g, '')
+    .replace(/--+/g, '-')
+    .replace(/^-+/, '')
+    .replace(/-+$/, '');
+}
+
+const hashtagMask = text => removeSpecialCharacters(text).replace(/-+/g, '');
+
+const usernameMask = text => removeSpecialCharacters(text).replace(/-+/g, '');
+
 export {
   dateMask,
+  hashtagMask,
   hourMask,
   maxValueNumberMask,
+  slugify,
+  usernameMask,
 }

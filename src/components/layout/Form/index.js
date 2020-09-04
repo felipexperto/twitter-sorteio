@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useContext, useState } from 'react';
 
 import { theme } from 'styles';
 // import { Tooltip } from 'components/ui';
@@ -11,8 +11,10 @@ import {
 import validate from './validate';
 import * as S from './styled';
 
+import FormContext from 'context/FormContext';
+
 const Form = () => {
-  
+  const { setFormResponse } = useContext(FormContext);
   const [values, setValues] = useState({});
   const [errors, setErrors] = useState({});
 
@@ -34,7 +36,7 @@ const Form = () => {
     if (Object.keys(errors).length) {
       setErrors(errors);
     } else {
-      return values;
+      setFormResponse(values);
     }
   }
 

@@ -1,8 +1,14 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { Fragment, useState } from 'react';
 
 import { theme } from 'styles';
-import { Tooltip } from 'components/ui';
-import { dateMask, hashtagMask, hourMask, maxValueNumberMask, usernameMask } from 'utils/helpers';
+// import { Tooltip } from 'components/ui';
+import {
+  dateMask,
+  hashtagMask,
+  hourMask,
+  maxValueNumberMask,
+  usernameMask } from 'utils/helpers';
+import validate from './validate';
 import * as S from './styled';
 
 const Form = () => {
@@ -10,93 +16,31 @@ const Form = () => {
   const [values, setValues] = useState({});
   const [errors, setErrors] = useState({});
 
-  const handleChange = (event, stateHook, callback) => {
-    event.persist();
-    if (typeof callback === 'function') callback(event);
-    stateHook(newValues => ({ ...newValues, [event.target.name]: event.target.value }));
-  }
-  const handleSubmit = (e, values, setErrors) => {
-    e.preventDefault();
-    setErrors(() => {}); // reset errors state
-
-    console.log(values);
-
-    if (!values.retweeted_from) {
-      setErrors(newValues => ({...newValues, retweeted_from: 'Insira um usuário'}));
-    }
-    
-    if (!values.hashtag) {
-      setErrors(newValues => ({...newValues, hashtag: 'Insira uma hashtag'}));
-    }
-    
-    if (!values.date) {
-      setErrors(newValues => ({...newValues, date: 'Insira uma data'}));
-    } else if (values.date.length < 10) {
-      setErrors(newValues => ({...newValues, date: 'Insira uma data válida'}));
-    } else {
-      const currentFullDate = new Date();
-      const currentDay = parseInt(currentFullDate.getDate(), 10);
-      const currentMonth = parseInt(currentFullDate.getMonth(), 10) + 1;
-      const currentYear = parseInt(currentFullDate.getFullYear(), 10);
-  
-      const inputFullDate = values.date.split('/');
-      const inputDay = parseInt(inputFullDate[0], 10);
-      const inputMonth = parseInt(inputFullDate[1], 10);
-      const inputYear = parseInt(inputFullDate[2], 10);
-
-      const inputYearNewerThanCurrentYear = inputYear > currentYear;
-      const inputMonthNewerThanCurrentMonth = inputMonth > currentMonth;
-      const inputDayNewerThanCurrentDay = inputDay > currentDay;
-
-      const sameYear = inputYear === currentYear;
-      const sameMonth = inputMonth === currentMonth;
-
-      const twitterYearCreation = 2006;
-
-      if (inputYear < twitterYearCreation) setErrors(newValues => ({...newValues, date: 'Insira um ano válido'}));
-      if (inputMonth > 12) setErrors(newValues => ({...newValues, date: 'Insira um mês válido'}));
-      if (inputDay > 31) setErrors(newValues => ({...newValues, date: 'Insira um dia válido'}));
-
-      if (inputYearNewerThanCurrentYear) {
-        setErrors(newValues => ({...newValues, date: 'Insira um ano válido'}));
-      } else if (sameYear && inputMonthNewerThanCurrentMonth) {
-        setErrors(newValues => ({...newValues, date: 'Insira um mês válido'}));
-      } else if (sameYear && sameMonth && inputDayNewerThanCurrentDay) {
-        setErrors(newValues => ({...newValues, date: 'Insira um dia válido'}));
-      }
-    }
-
-    if (values.hours) {
-      if (!values.hour_begin) {
-        setErrors(newValues => ({...newValues, hour_begin: 'Insira um horário'}));
-      } else {
-        // verificar se horas <= 12
-        // se minutos <= 59
-      }
-      if (!values.hour_end) {
-        setErrors(newValues => ({...newValues, hour_end: 'Insira um horário'}));
-      } else {
-        // verificar se horas <= 12
-        // se minutos <= 59
-      }
-    }
-    
-
-    // se nao houverem erros, retornar valores que serão utilizados
-    // como parametros na chamada assíncrona no App.JS
-
-  }
-
   const callbackDate = event => dateMask({ event, targetValue: event.target.value });
   const callbackHour = event => hourMask({ event, targetValue: event.target.value });
   const callbackHashtag = event => event.target.value = hashtagMask(event.target.value);
   const callbackUsername = event => event.target.value = usernameMask(event.target.value);
   const callbackNumberOfResults = event => maxValueNumberMask({ event, targetValue: event.target.value, maxValue: 100 });
 
+  const handleChange = (event, stateHook, callback) => {
+    event.persist();
+    if (typeof callback === 'function') callback(event);
+    stateHook(newValues => ({ ...newValues, [event.target.name]: event.target.value }));
+  }
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const { errors } = validate(values);
+    
+    if (Object.keys(errors).length) {
+      setErrors(errors);
+    } else {
+      return values;
+    }
+  }
 
   return (
     <S.FormWrapper>
-    <S.Form noValidate onSubmit={e => handleSubmit(e, values, setErrors)}>
+    <S.Form noValidate onSubmit={e => handleSubmit(e)}>
       <S.FormSection hasDivisor="true">
         <S.FormSectionTitle>Informações do Tweet</S.FormSectionTitle>
         <S.FormSectionFields>
@@ -252,13 +196,13 @@ const Form = () => {
                   onChange={e => handleChange(e, setValues, callbackHour)}
                   placeholder="HH:MM"
                   type="text"
-                  value={values.hourBegin || ''}
+                  value={values.hour_begin || ''}
                 />
                 <S.FormFieldsetHelp
                   id="hour_begin-help"
                   errorMessage={!!errors.hour_begin}
                 >
-                  {(errors.hour_begin) && errors.hour_begin}
+                  {(errors.hour_begin) ? errors.hour_begin : 'Ex: 09:34'}
                 </S.FormFieldsetHelp>
               </S.FormFieldset>
               <S.FormFieldset>
@@ -276,13 +220,13 @@ const Form = () => {
                   onChange={e => handleChange(e, setValues, callbackHour)}
                   placeholder="HH:MM"
                   type="text"
-                  value={values.hourEnd || ''}
+                  value={values.hour_end || ''}
                 />
                 <S.FormFieldsetHelp
                   id="hour_end-help"
                   errorMessage={!!errors.hour_end}
                 >
-                  {(errors.hour_end) && errors.hour_end}
+                  {(errors.hour_end) ? errors.hour_end : 'Ex: 22:15'}
                 </S.FormFieldsetHelp>
               </S.FormFieldset>
             </Fragment>

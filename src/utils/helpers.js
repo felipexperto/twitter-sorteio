@@ -94,25 +94,19 @@ const isThisDateValidForSearch = (day, month, year, minimumYear) => {
   let isValid = true;
 
   if (minimumYear) {
-    if (year < minimumYear) { 
-      // setErrors(newValues => ({...newValues, date: 'Insira um ano válido'}));
+    if (year < minimumYear) {
       error.message = 'year.invalid';
     }
   } else if (month > 12) {
     error.message = 'month.invalid';
-    // setErrors(newValues => ({...newValues, date: 'Insira um mês válido'}));
   } else if (day > 31) {
     error.message = 'day.invalid';
-    // setErrors(newValues => ({...newValues, date: 'Insira um dia válido'}));
   } else if (yearNewerThanCurrentYear) {
     error.message = 'year.invalid';
-    // setErrors(newValues => ({...newValues, date: 'Insira um ano válido'}));
   } else if (sameYear && monthNewerThanCurrentMonth) {
     error.message = 'month.invalid';
-    // setErrors(newValues => ({...newValues, date: 'Insira um mês válido'}));
   } else if (sameYear && sameMonth && dayNewerThanCurrentDay) {
     error.message = 'day.invalid';
-    // setErrors(newValues => ({...newValues, date: 'Insira um dia válido'}));
   }
 
   if (error.message) isValid = false;

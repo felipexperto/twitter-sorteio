@@ -1,4 +1,4 @@
-- Desenvolvimento
+- Desenvolvimento - Parte I
   - [x] Passar e pegar parâmetros aqui: app.get('/api/tweets', (req, res) => {
   - [x] Criar formulário com parâmetros estabelecidos para filtrar os tweets.
     - [x] Por padrão já pega os tweets retweetados somentes;
@@ -21,19 +21,22 @@
       https://sorteador.com.br/
       https://dribbble.com/shots/8433785-Account-List-UI-Design/attachments
   - [x] Adicionar botão de Sortear (cantos arredondados estilo Twitter);
-  - [ ] Alterar texto do botão para 'Refazer Sorteio' ou 'Sortear novamente' após o primeiro sorteio
   - [x] Estilizar coluna da esquerda como o Twitter;
   - [x] Procurar por `list` ou `table` UIs para exibir os resultados
-  - [ ] Placeholder para o local onde aparecem os resultados
+  - [x] Placeholder para o local onde aparecem os resultados
   - [x] Toggle button para exibir ou ocultar inputs de horário
     - [x] Colocar label de ativado/desativado
+  - [ ] Trocar campos de username e hashtag por ID do tweet;
+  - [ ] `App/index.js`: shuffle array de resultados;
+
+- Desenvolvimento - Parte II
   - [ ] Testar acessibilidade
   - [ ] Explicar a finalidade do app na seção Jumbotron
   - [ ] UX Writing por Daniele
-  - [ ] Spin animation no logo na seção Jumbotron
-  - [ ] Google Analytics
-  - [?] Dark Theme
-  - [?] Manter o botão desabilitado até que os campos obrigatórios sejam preenchidos
+  - [?] Spin animation no logo na seção Jumbotron
+  - [?] Google Analytics
+  - [?] Alterar texto do botão para 'Refazer Sorteio' ou 'Sortear novamente' após o primeiro sorteio
+  - [?] Detectar dark theme com @media e aplicar mudanças no layout;
   - [?] Selecionar um nome decente
 
 - Pesquisa
@@ -41,10 +44,13 @@
   - [] Como colocar as variáveis de ambiente para o CRA e para o Node?
 
 - Débito técnico
+  - [ ] Prettier
+  - [ ] ESLint
+  - [ ] Stylelint
+  - [ ] Husky pre-commit hook
   - [ ] Testes unitários
   - [ ] Substituir o Axios por fetch;
   - [ ] Docker pra subir tudo de uma vez;
   - [ ] Atualizar README.md;
   - [ ] Declarar todas as cores no theme;
   - [ ] Trocar favicon;
-  - [ ] Separar input e button de dentro do styled.js do form

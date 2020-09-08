@@ -9,31 +9,6 @@ import * as S from './styled';
 import { returnObjectFromStringDate } from 'utils/helpers';
 import { FormProvider } from 'context/FormContext';
 
-// function shuffleFisherYates(array) {
-//   let i = array.length;
-//   while (i--) {
-//     const ri = Math.floor(Math.random() * (i + 1));
-//     [array[i], array[ri]] = [array[ri], array[i]];
-//   }
-//   return array;
-// }
-
-// const shuffleArray = (arr) => {
-//   let currentIndex = arr.length;
-//   let temporaryValue, randomIndex;
-  
-//   while (0 !== currentIndex) {
-//     randomIndex = Math.floor(Math.random() * currentIndex);
-//     currentIndex -= 1;
-    
-//     temporaryValue = arr[currentIndex];
-//     arr[currentIndex] = arr[randomIndex];
-//     arr[randomIndex] = temporaryValue;
-//   }
-  
-//   return arr;
-// };
-
 function App() {
   const [formResponse, setFormResponse] = useState({});
   const [retweets, setRetweets] = useState([]);
@@ -103,12 +78,6 @@ function App() {
     });
   }, [formResponse]);
   
-  // useEffect(() => {
-  //   console.log('app.js', !!retweets.length, retweets);
-  // }, [retweets]);
-
-
-
   return (
     <ThemeProvider theme={theme}>
         <GlobalStyles backgroundColor={theme.main.colors.extraextralightgray} />

@@ -40,6 +40,28 @@ const getCurrentTime = () => {
   }
 }
 
+const returnObjectFromStringDate = (str, separator, lang) => {
+  const fullDate = str.split(separator); 
+  let day, month, year;
+
+  // string format: DD/MM/YYYY
+  if (lang === 'pt') {
+    day = parseInt(fullDate[0], 10);
+    month = parseInt(fullDate[1], 10);
+    year = parseInt(fullDate[2], 10);
+  }
+  if (lang === 'en') {
+    day = parseInt(fullDate[2], 10);
+    month = parseInt(fullDate[1], 10);
+    year = parseInt(fullDate[0], 10);
+  }
+  return {
+    day,
+    month,
+    year
+  }
+}
+
 const isTimeIntervalValid = (beginHour, beginMinute, endHour, endMinute) => {
   const { currentDay, currentMonth, currentYear } = getCurrentDate();
   const begin = new Date(currentYear, currentMonth, currentDay, beginHour, beginMinute);
@@ -151,9 +173,9 @@ const slugify = (text) => {
     .replace(/-+$/, '');
 }
 
-const hashtagMask = text => removeSpecialCharacters(text).replace(/-+/g, '');
+const hashtagMask = text => removeSpecialCharacters(text).replace(/[^0-9a-zA-Z_]+/g, '');
 
-const usernameMask = text => removeSpecialCharacters(text).replace(/-+/g, '');
+const usernameMask = text => removeSpecialCharacters(text).replace(/[^0-9a-zA-Z_]+/g, '');
 
 export {
   dateMask,
@@ -165,6 +187,7 @@ export {
   isThisDateValidForSearch,
   isTimeIntervalValid,
   maxValueNumberMask,
+  returnObjectFromStringDate,
   slugify,
   usernameMask,
 }

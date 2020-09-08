@@ -2,7 +2,8 @@ import {
   getCurrentTime,
   isThisDateToday,
   isThisDateValidForSearch,
-  isTimeIntervalValid } from 'utils/helpers';
+  isTimeIntervalValid,
+  returnObjectFromStringDate } from 'utils/helpers';
 
 const getErrorMessage = (key) => {
   const messages = {
@@ -32,11 +33,11 @@ export default function validate(values) {
   } else if (values.date.length < 10) {
     errors.date = 'Insira uma data válida';
   } else {
-    const inputFullDate = values.date.split('/');
+    const fullDate = returnObjectFromStringDate(values.date, '/', 'pt');
     const twitterYearCreation = 2006;
-    inputDay = parseInt(inputFullDate[0], 10);
-    inputMonth = parseInt(inputFullDate[1], 10);
-    inputYear = parseInt(inputFullDate[2], 10);
+    inputDay = fullDate.day;
+    inputMonth = fullDate.month;
+    inputYear = fullDate.year;
 
     const { message, isValid } = isThisDateValidForSearch(inputDay, inputMonth, inputYear, twitterYearCreation);
     

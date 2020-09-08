@@ -7,14 +7,14 @@
     - [x] Campo de data permitindo inserir um único dia para ficar alinhado com o propósito do app
     - [x] Campo de hora de início e hora de término
     - [x] Campo com número de resultados desejados c/ limite de 100: "Quantidade de resultados (limite de 100 tweets)"
-  - [ ] Criar validações
-    - [ ] Validação de hashtag e username. Não podem ter espaços
+  - [x] Criar validações
+    - [x] Validação de hashtag e username. Não podem ter espaços
     - [x] Máscara de data
-    - [ ] Validação de data
+    - [x] Validação de data
     - [x] Máscara de hora
-    - [ ] Validação de hora
+    - [x] Validação de hora
     - [x] Validação de somente numeros
-  - [ ] Utilizar contextAPI para compartilhar estado entre componentes
+  - [x] Utilizar contextAPI para compartilhar estado entre componentes
   - [x] Estilizar títulos, hr, inputs
     - Ref: 
       https://getbootstrap.com/docs/4.5/examples/checkout/

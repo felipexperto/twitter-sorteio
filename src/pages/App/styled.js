@@ -1,4 +1,4 @@
-import styled from 'styled-components/macro';
+import styled, { css } from 'styled-components/macro';
 
 const Jumbotron = styled.section`
   background-color: ${({ backgroundColor }) => backgroundColor || 'transparent'};
@@ -61,7 +61,14 @@ const ColumnFirst = styled(Column)`
   overflow: hidden;
   position: relative;
 
-  svg {
+  ${({ isLoaderVisible }) => isLoaderVisible
+    && css`
+      align-items: center;
+      display: flex;
+      justify-content: center;
+    `};
+
+  > svg {
     height: 160vh;
     position: absolute;
     right: -50vh;

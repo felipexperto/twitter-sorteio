@@ -1,44 +1,68 @@
 import React from 'react';
-
 import * as S from './styled';
 
-const RandomList = () => {
+const RandomList = ({ retweetsList }) => {
+	const allTweets = retweetsList.length;
+	const tweetWinner = retweetsList.shift();
+	const hasTweets = retweetsList && !!retweetsList.length;
+	const hasWinner = tweetWinner && !!Object.keys(tweetWinner).length;
 
 	return (
 		<S.Card>
-			<S.CardHeader>
-				<S.CardTitle>Perfil sorteado</S.CardTitle>
-				<S.CardWinnerImage src="https://api.adorable.io/avatars/285/abott@adorable.png" alt="" />
-				<S.CardWinnerId href="#">@BarackObama</S.CardWinnerId>
-				<S.CardWinnerNick>Barack Obama</S.CardWinnerNick>
-				<S.CardTotalRetweets>De um total de XX retweets</S.CardTotalRetweets>
-			</S.CardHeader>
-			<S.CardBody>
-				<S.CardList>
+			{
+				(hasWinner) && (
+					<S.CardHeader>
+						<S.CardTitle>Perfis sorteados</S.CardTitle>
+						<S.CardWinnerImage src={tweetWinner.profile_image_url} alt={`Foto de @${tweetWinner.screen_name}`} />
+						<S.CardWinnerId
+							target="_blank"
+							href={`https://twitter.com/${tweetWinner.screen_name}`}
+						>
+							@{tweetWinner.screen_name}
+						</S.CardWinnerId>
+						<S.CardWinnerNick>{tweetWinner.name}</S.CardWinnerNick>
+						<S.CardTotalRetweets>De um total de {allTweets} retweets encontrados</S.CardTotalRetweets>
+					</S.CardHeader>
+				)
+			}
+			{
+				(hasTweets) ? (
+					<S.CardBody>
+						<S.CardList>
+							{
+								retweetsList.map((item, index) => {
+									const { name, screen_name, profile_image_url } = item;
+									return (
+									<S.CardListItem key={index+2}>
+										<S.CardListItemColumn>
+											<S.CardListItemImage src={profile_image_url} />
+										</S.CardListItemColumn>
+										<S.CardListItemColumn>
+											<S.CardListItemId
+												target="_blank"
+												href={`https://twitter.com/${screen_name}`}
+											>
+												@{screen_name}
+											</S.CardListItemId>
+											<S.CardListItemNick>{name}</S.CardListItemNick>
+										</S.CardListItemColumn>
+										<S.CardListItemColumn>
+											<S.CardListItemPosition>
+												<div>
+													{index+2}
+												</div>
+											</S.CardListItemPosition>
+										</S.CardListItemColumn>
+									</S.CardListItem>
+								)})
+							}
+						</S.CardList>
+					</S.CardBody>
+				) : (
+					null
+				)
+			}
 
-					{
-						[2,3,4,5,6,7,8,9,100].map(item => (
-							<S.CardListItem key={item}>
-								<S.CardListItemColumn>
-									<S.CardListItemImage src="https://api.adorable.io/avatars/285/abott@adorable.png" />
-								</S.CardListItemColumn>
-								<S.CardListItemColumn>
-									<S.CardListItemId>@lorem_ipsum_{item}</S.CardListItemId>
-									<S.CardListItemNick>Lorem Ipsum {item}</S.CardListItemNick>
-								</S.CardListItemColumn>
-								<S.CardListItemColumn>
-									<S.CardListItemPosition>
-										<div>
-											{item}
-										</div>
-									</S.CardListItemPosition>
-								</S.CardListItemColumn>
-							</S.CardListItem>
-						))
-					}
-
-				</S.CardList>
-			</S.CardBody>
 		</S.Card>
 	)
 };

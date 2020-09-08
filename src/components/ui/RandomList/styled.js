@@ -113,7 +113,9 @@ const CardListItemNick = styled.div`
   color: ${({ theme }) => theme.main.colors.darkgray };
   font-size: .9rem;
 `;
-const CardListItemId = styled.div`
+const CardListItemId = styled.a`
+  color: ${({ theme }) => theme.main.colors.black };
+  display: block;
   font-weight: ${({ theme }) => theme.main.fonts.weight.bold };
   margin-bottom: .25rem;
 `;

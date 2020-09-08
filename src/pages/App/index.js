@@ -3,32 +3,112 @@ import { ThemeProvider } from "styled-components";
 
 import { GlobalStyles, theme } from 'styles';
 import { Form, Footer, Header } from '../../components/layout';
-import { Container, RandomList } from 'components/ui';
+import { Container, Loader, RandomList } from 'components/ui';
 import * as S from './styled';
 
+import { returnObjectFromStringDate } from 'utils/helpers';
 import { FormProvider } from 'context/FormContext';
+
+// function shuffleFisherYates(array) {
+//   let i = array.length;
+//   while (i--) {
+//     const ri = Math.floor(Math.random() * (i + 1));
+//     [array[i], array[ri]] = [array[ri], array[i]];
+//   }
+//   return array;
+// }
+
+// const shuffleArray = (arr) => {
+//   let currentIndex = arr.length;
+//   let temporaryValue, randomIndex;
+  
+//   while (0 !== currentIndex) {
+//     randomIndex = Math.floor(Math.random() * currentIndex);
+//     currentIndex -= 1;
+    
+//     temporaryValue = arr[currentIndex];
+//     arr[currentIndex] = arr[randomIndex];
+//     arr[randomIndex] = temporaryValue;
+//   }
+  
+//   return arr;
+// };
 
 function App() {
   const [formResponse, setFormResponse] = useState({});
+  const [retweets, setRetweets] = useState([]);
 
-/*
+  const formatRequestParameters = ({
+    amount_results,
+    date,
+    hour_begin,
+    hour_end,
+   }) => {
+      // Docs: https://developer.twitter.com/en/docs/twitter-api/v1/tweets/post-and-engage/api-reference/get-statuses-retweets-id
+
+      const rtCount = amount_results ? amount_results : 10;
+      const rtId = '1302925063440793602'; // retweeted_id // 1302925063440793602
+      
+      const { day, month, year } = returnObjectFromStringDate(date, '/', 'pt');
+      const rtDate = `${year}-${month}-${day}`;
+      
+      const rtHourBegin = hour_begin ? `${hour_begin}:00` : '00:00:00';
+      const rtHourEnd = hour_end ? `${hour_end}:59` : '23:59:59';
+
+      return {
+        rtCount,
+        rtDate,
+        rtHourBegin,
+        rtHourEnd,
+        rtId,
+      };
+  }
+
 	useEffect(() => {
-		console.log('process.env.REACT_APP_APP_URL', process.env.REACT_APP_APP_URL);
-		// const requestURI = 'from%3Avagastech&result_type=recent&count=12';
-		// const requestURI = 'TECHNO&result_type=recent&geocode=-23.6705893,-46.7713017km&granularity=neighborhood&count=12';
-		const requestParameters = '%23FreeFire&result_type=recent&count=12';
+    if (!Object.keys(formResponse).length) return;
 
-		fetch(`http://localhost:3001/api/tweets?q=${requestParameters}`)
-		.then(response => response.json()) 
-		.then(response => console.log(response))
+    const paramsRetweet = formatRequestParameters({ ...formResponse });
+    
+		fetch(`http://localhost:3001/api/retweets`, {
+      method: 'GET',
+      headers: {
+        ...paramsRetweet
+      },
+    })
+		.then(async (response) => {
+      if (response.status !== 200) {
+        console.group();
+          console.error(`${response.status} ${response.statusText}`);
+          console.dir(response);
+        console.groupEnd();
+      } else {
+        const responseJSON = await response.json();
+        const retweetsFilteredInfo = responseJSON.map(item => {
+          const { user } = item;
+          return {
+            name: user.name,
+            screen_name: user.screen_name,
+            profile_image_url: user.profile_image_url,
+          }
+        });
+
+        // TODO: shuffle array
+
+        // update state
+        setRetweets(() => retweetsFilteredInfo);
+      }
+    })
 		.catch(err => {
-			console.error('Failed retrieving information', err); 
+			console.error(err);
     });
-    
-    // embaralhar resultados e exibir na lista;
-    
-	}, []);
-*/
+  }, [formResponse]);
+  
+  // useEffect(() => {
+  //   console.log('app.js', !!retweets.length, retweets);
+  // }, [retweets]);
+
+
+
   return (
     <ThemeProvider theme={theme}>
         <GlobalStyles backgroundColor={theme.main.colors.extraextralightgray} />
@@ -46,16 +126,20 @@ function App() {
           </Container>
         </S.Jumbotron>
         <S.Columns>
-          <S.ColumnFirst>
+          <S.ColumnFirst isLoaderVisible={!retweets.length}>
             <svg viewBox="0 0 24 24">
               <g>
                 <path fill={theme.main.colors.blue} d="M23.643 4.937c-.835.37-1.732.62-2.675.733.962-.576 1.7-1.49 2.048-2.578-.9.534-1.897.922-2.958 1.13-.85-.904-2.06-1.47-3.4-1.47-2.572 0-4.658 2.086-4.658 4.66 0 .364.042.718.12 1.06-3.873-.195-7.304-2.05-9.602-4.868-.4.69-.63 1.49-.63 2.342 0 1.616.823 3.043 2.072 3.878-.764-.025-1.482-.234-2.11-.583v.06c0 2.257 1.605 4.14 3.737 4.568-.392.106-.803.162-1.227.162-.3 0-.593-.028-.877-.082.593 1.85 2.313 3.198 4.352 3.234-1.595 1.25-3.604 1.995-5.786 1.995-.376 0-.747-.022-1.112-.065 2.062 1.323 4.51 2.093 7.14 2.093 8.57 0 13.255-7.098 13.255-13.254 0-.2-.005-.402-.014-.602.91-.658 1.7-1.477 2.323-2.41z"></path>
               </g>
             </svg>
             <S.ContainerRelative>
-              <RandomList 
-                retweetsList={[]}
-              />
+              {
+                (!!retweets.length) ? (
+                  <RandomList retweetsList={retweets} />
+                ) : (
+                  <Loader message={<>Aguardando sorteio.<br/> Seus resultados aparecerão aqui.</>} />
+                )
+              }
             </S.ContainerRelative>
           </S.ColumnFirst>
           <S.ColumnSecond>

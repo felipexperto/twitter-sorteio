@@ -3,6 +3,8 @@
 Este projeto é uma plataforma experimental e não oficial de sorteio espontâneo.  
 A ideia para criação surgiu da participação de um evento onde era necessário um sorteio baseado no retweet de um post específico e foi difícil encontrar uma ferramenta que o fizesse.
 
+![Imagem da aplicação](readme/layout-different-screens.png)
+
 ## **O que esperar desta aplicação?**
 
 Na tentativa de resolver o problema citado na introdução foi criado um formulário onde é possível inserir a URL de um tweet juntamente com a data e de maneira opcional um horário.
@@ -11,19 +13,19 @@ Premissas relacionadas ao `produto`:
 
 - Seguindo a lógica de um sorteio que ocorreria durante ou logo ao final de um evento, a aplicação só aceita uma data e a API do Twitter só trará resultados de até 7 dias passados a partir da data atual;
 - Preenchimento fácil dos campos proporcionando agilidade para o usuário;
- - Isso inclui preocupações com validação, máscaras, rótulos, textos descritivos e acessibilidade (contraste de cores, navegação do teclado, utilização de tecnologias assistivas);
+  - Isso inclui preocupações com validação, máscaras, rótulos, textos descritivos e acessibilidade (contraste de cores, navegação do teclado, utilização de tecnologias assistivas);
 - Seguir a identidade visual do Twitter mas não utilizar o Bootstrap mas sim recriar os componentes que fossem necessários;
 
 Premissas `técnicas`:
 
 - Utilizar a API `v1.1` disponibilizada pelo Twitter para buscar as informações;
- - A versão `v1.1` da API será considerada obsoleta em nov/2020;
- - Atualmente o número máximo de resultados por sorteio é 100 usuários devido ao limite da API, isso mudará com o surgimento da `v2.0` por parte do Twitter;
-- Utilizar stack Javascript
- - Node.js com Express para realizar chamadas server-side que necessitam de Bearer Token sem expor dados sensíveis(chaves de autenticação);
- - React com [Create React App](https://github.com/facebook/create-react-app) no front por ser uma aplicação simples e não haver preocupações relacionados à SEO e server-side rendering;
+  - A versão `v1.1` da API será considerada obsoleta em nov/2020;
+  - Atualmente o número máximo de resultados por sorteio é 100 usuários devido ao limite da API, isso mudará com o surgimento da `v2.0` por parte do Twitter;
+- Utilizar stack Javascript:
+  - Node.js com Express para realizar chamadas server-side que necessitam de Bearer Token sem expor dados sensíveis(chaves de autenticação);
+  - React com [Create React App](https://github.com/facebook/create-react-app) no front por ser uma aplicação simples e não haver preocupações relacionados à SEO e server-side rendering;
 - Menor número de dependências possível;
-- Cobrir todos os pontos da lista de TODO.md
+- Cobrir todos os pontos da lista de [TODO.md](TODO.md).
 
 ## **Stack**
 
@@ -48,17 +50,17 @@ A instalação pode ser realizada via [NVM (Node Version Manager)](https://githu
 
 Se você já tem o Node.js instalado, prossiga:
 
-1. Copie o repositório;
-2. Instale as dependências com: `npm run install` ou `yarn install`;
+- Copie o repositório;
+- Instale as dependências com: `npm run install` ou `yarn install`;
 
 ## Rodando sem Docker:
 
-1. Abra uma aba num terminal de sua preferência (Terminal, Prompt, iTerm);
-2. Certifique-se de estar na pasta do projeto;
-3. Vamos subir o servidor com o comando: `node server.js`;
- - Se a execução ocorrer corretamente você receberá o feedback: `Listening on port 3001`
-4. Em outra aba do terminal rodaremos a aplicação com o comando: `npm start` ou `yarn start` 
- - Se tudo estiver correto, uma janela abrirá em seu navegador com a url `http://localhost:3000`
+- Abra uma aba num terminal de sua preferência (Terminal, Prompt, iTerm);
+- Certifique-se de estar na pasta do projeto;
+- Vamos subir o servidor com o comando: `node server.js`;
+  - Se a execução ocorrer corretamente você receberá o feedback: `Listening on port 3001`
+- Em outra aba do terminal rodaremos a aplicação com o comando: `npm start` ou `yarn start` 
+  - Se tudo estiver correto, uma janela abrirá em seu navegador com a url `http://localhost:3000`
 
 ## Rodando com Docker:
 

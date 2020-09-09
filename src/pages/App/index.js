@@ -18,11 +18,12 @@ function App() {
     date,
     hour_begin,
     hour_end,
+    retweeted_id,
    }) => {
       // Docs: https://developer.twitter.com/en/docs/twitter-api/v1/tweets/post-and-engage/api-reference/get-statuses-retweets-id
 
       const rtCount = amount_results ? amount_results : 10;
-      const rtId = '1302925063440793602'; // retweeted_id // 1302925063440793602
+      const rtId = `${retweeted_id}`;
       
       const { day, month, year } = returnObjectFromStringDate(date, '/', 'pt');
       const rtDate = `${year}-${month}-${day}`;
@@ -43,6 +44,7 @@ function App() {
     if (!Object.keys(formResponse).length) return;
 
     const paramsRetweet = formatRequestParameters({ ...formResponse });
+    console.log('paramsRetweet', paramsRetweet);
     
 		fetch(`http://localhost:3001/api/retweets`, {
       method: 'GET',
@@ -58,6 +60,7 @@ function App() {
         console.groupEnd();
       } else {
         const responseJSON = await response.json();
+        console.log('responseJSON', responseJSON);
         const retweetsFilteredInfo = responseJSON.map(item => {
           const { user } = item;
           return {

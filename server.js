@@ -36,7 +36,10 @@ const requestHeaders = {
   }
 }
 
-const changeUTCDateTimezone = (utcDateString, lang, timeZone) => new Date(utcDateString).toLocaleString(lang, { timeZone });
+const changeUTCDateTimezone = (utcDateString, lang, timeZone) => {
+  const newDate = new Date(utcDateString).toLocaleString(lang, { timeZone });
+  return newDate;
+}
 
 const verifyTweetId = uri => axios
   .get(uri, { ...requestHeaders })
@@ -71,22 +74,25 @@ app.get('/api/retweets', async (req, res) => {
   if (!isTweetValid) {
     res.statusMessage = 'Invalid tweet ID';
     res.status(404).send();
-  }
+  } else {
 
-  const requestURI = `${RETWEETS_URI}/${rt.id}.json?count=${rt.count}`;
-  const retweets = await getRetweets(requestURI);
+    const requestURI = `${RETWEETS_URI}/${rt.id}.json?count=${rt.count}`;
+    const retweets = await getRetweets(requestURI);
 
-  if (Object.keys(retweets)) {
-    retweets.map(item => {
-      item.created_at_newtimezone = changeUTCDateTimezone(item.created_at, 'pt-BR', 'America/Argentina/Buenos_Aires');
-    });
-    const validRetweets = retweets.filter(item => filterByDate(item.created_at_newtimezone, rt.fullBeginDate, rt.fullEndDate));
+    if (Object.keys(retweets).length) {
+      retweets.map(item => {
+        item.created_at_newtimezone = changeUTCDateTimezone(item.created_at, 'pt-BR', 'America/Argentina/Buenos_Aires');
+      });
 
-    if (!Object.keys(validRetweets).length) { 
-      res.statusMessage = 'Retweets not found';
-      res.status(404).send();
+      const validRetweets = retweets.filter(item => filterByDate(item.created_at_newtimezone, rt.fullBeginDate, rt.fullEndDate));
+
+      if (Object.keys(validRetweets).length) {
+        res.send(validRetweets);
+      } else {
+        res.statusMessage = 'Retweets not found';
+        res.status(404).send();
+      }
     }
-    res.send(validRetweets);
   }
 });
 

@@ -18,12 +18,8 @@ const getErrorMessage = (key) => {
 export default function validate(values) {
   const errors = {};
 
-  if (!values.retweeted_from) {
-    errors.retweeted_from = 'Insira um usuário';
-  }
-  
-  if (!values.hashtag) {
-    errors.hashtag = 'Insira uma hashtag';
+  if (!values.retweeted_id) {
+    errors.retweeted_id = 'Insira um ID';
   }
 
   let inputDay, inputMonth, inputYear;

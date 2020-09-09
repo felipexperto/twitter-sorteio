@@ -1,4 +1,4 @@
-import styled from 'styled-components/macro';
+import styled, { css } from 'styled-components/macro';
 
 import { visuallyHidden } from 'styles/Mixins';
 
@@ -44,7 +44,14 @@ const FormFieldset = styled.fieldset`
   border: 0;
   margin: 0 0 1rem 0;
   padding: 0;
-  width: 50%;
+
+  ${({ isFullWidth }) => isFullWidth
+    ? css`
+      width: 100%;
+    `
+    : css`
+      width: 50%;
+    `};
 `;
 
 const FormFieldsetLabel = styled.label`

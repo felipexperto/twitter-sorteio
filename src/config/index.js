@@ -8,8 +8,12 @@ const RETWEETS_URI = 'https://api.twitter.com/1.1/statuses/retweets';
 const TWEET_URI = 'https://api.twitter.com/1.1/statuses/show.json';
 
 /*
-  👆 https://developer.twitter.com/en/docs/twitter-api/v1/tweets/post-and-engage/api-reference/get-statuses-retweets-id
+  👆 
+  https://developer.twitter.com/en/docs/twitter-api/v1/tweets/post-and-engage/api-reference/get-statuses-retweets-id
   Returns a collection of the 100 most recent retweets of the Tweet specified by the id parameter.
+
+  https://developer.twitter.com/en/docs/twitter-api/v1/tweets/post-and-engage/api-reference/get-statuses-show-id
+  Returns a single Tweet, specified by the id parameter. The Tweet's author will also be embedded within the Tweet.
 */
 
 if (process.env.NODE_ENV) {

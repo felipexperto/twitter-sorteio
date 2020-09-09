@@ -167,15 +167,12 @@ const slugify = (text) => {
     .replace(/-+$/, '');
 }
 
-const hashtagMask = text => removeSpecialCharacters(text).replace(/[^0-9a-zA-Z_]+/g, '');
-
-const usernameMask = text => removeSpecialCharacters(text).replace(/[^0-9a-zA-Z_]+/g, '');
+const tweetIdMask = text => removeSpecialCharacters(text).replace(/[^0-9a-zA-Z_]+/g, '');
 
 export {
   dateMask,
   getCurrentDate,
   getCurrentTime,
-  hashtagMask,
   hourMask,
   isThisDateToday,
   isThisDateValidForSearch,
@@ -183,5 +180,5 @@ export {
   maxValueNumberMask,
   returnObjectFromStringDate,
   slugify,
-  usernameMask,
+  tweetIdMask,
 }

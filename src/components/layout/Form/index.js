@@ -1,7 +1,6 @@
 import React, { Fragment, useContext, useState } from 'react';
 
 import { theme } from 'styles';
-// import { Tooltip } from 'components/ui';
 import {
   dateMask,
   hourMask,

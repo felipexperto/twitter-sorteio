@@ -46,30 +46,32 @@ const Form = () => {
         <S.FormSectionFields>
           <S.FormFieldset isFullWidth={true}>
             <S.FormFieldsetLabel
-              id="retweeted_id-label"
-              htmlFor="retweeted_id"
+              id="retweeted_link-label"
+              htmlFor="retweeted_link"
             >
-              ID do tweet original
+              Link do tweet original
             </S.FormFieldsetLabel>
             <S.FormFieldsetInputGroup>
               <S.FormFieldsetInputIcon>
-                ...status/
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M4.222 19.778c.975.975 2.255 1.462 3.535 1.462 1.281-.001 2.562-.487 3.536-1.462l2.828-2.829-1.414-1.414-2.828 2.829c-1.169 1.167-3.072 1.169-4.243 0-1.169-1.17-1.169-3.073 0-4.243l2.829-2.828L7.051 9.879l-2.829 2.828C2.273 14.656 2.273 17.829 4.222 19.778zM19.778 11.293c1.948-1.949 1.948-5.122 0-7.071-1.95-1.95-5.123-1.948-7.071 0L9.879 7.051l1.414 1.414 2.828-2.829c1.17-1.167 3.073-1.169 4.243 0 1.169 1.17 1.169 3.073 0 4.243l-2.829 2.828 1.414 1.414L19.778 11.293z"/>
+                  <path transform="rotate(-134.999 12 12)" d="M11 5.999H13V18H11z"/>
+                </svg>
               </S.FormFieldsetInputIcon>
               <S.FormFieldsetInput
-                aria-labelledby="retweeted_id-label"
-                id="retweeted_id"
-                name="retweeted_id"
+                aria-labelledby="retweeted_link-label"
+                id="retweeted_link"
+                name="retweeted_link"
                 onChange={e => handleChange(e, setValues, callbackTweetId)}
                 placeholder=""
                 type="text"
-                value={values.retweeted_id || ''}
+                value={values.retweeted_link || ''}
               />
             </S.FormFieldsetInputGroup>
             <S.FormFieldsetHelp
-              id="retweeted_id-help"
-              errorMessage={!!errors.retweeted_id}
+              id="retweeted_link-help"
+              errorMessage={!!errors.retweeted_link}
             >
-              {(errors.retweeted_id) && errors.retweeted_id}
+              {(errors.retweeted_link) ? errors.retweeted_link : 'Ex: https://twitter.com/MomentsBrasil/status/...'}
             </S.FormFieldsetHelp>
           </S.FormFieldset>
         </S.FormSectionFields>

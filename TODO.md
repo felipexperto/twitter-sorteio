@@ -26,7 +26,8 @@
   - [x] Placeholder para o local onde aparecem os resultados
   - [x] Toggle button para exibir ou ocultar inputs de horário
     - [x] Colocar label de ativado/desativado
-  - [ ] Trocar campos de username e hashtag por ID do tweet;
+  - [x] Trocar campos de username e hashtag por ID do tweet;
+  - [x] Trocar campo de ID por URL (facilitar pro usuário);
   - [ ] `App/index.js`: shuffle array de resultados;
 
 - Desenvolvimento - Parte II

@@ -83,7 +83,6 @@ app.get('/api/retweets', async (req, res) => {
       retweets.map(item => {
         item.created_at_newtimezone = changeUTCDateTimezone(item.created_at, 'pt-BR', 'America/Argentina/Buenos_Aires');
       });
-
       const validRetweets = retweets.filter(item => filterByDate(item.created_at_newtimezone, rt.fullBeginDate, rt.fullEndDate));
 
       if (Object.keys(validRetweets).length) {

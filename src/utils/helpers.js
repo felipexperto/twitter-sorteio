@@ -146,8 +146,8 @@ const maxValueNumberMask = (args) => {
 }
 
 const removeSpecialCharacters = (text) => {
-  const from = 'ãàáäâèéëêìíïîòóöôùúüûñç·/,:;';
-  const to = 'aaaaaeeeeiiiioooouuuunc-----';
+  const from = 'ãàáäâèéëêìíïîòóöôùúüûñç·,;';
+  const to = 'aaaaaeeeeiiiioooouuuunc---';
   const regx = new RegExp(from.split('').join('|'), 'g');
 
   return text
@@ -155,19 +155,7 @@ const removeSpecialCharacters = (text) => {
     .replace(regx, result => to.charAt(from.indexOf(result)));
 }
 
-const slugify = (text) => {
-  return removeSpecialCharacters(text)
-    .toLowerCase()
-    .replace(/_+/g, '-')
-    .replace(/\s+/g, '-')
-    .replace(/_/g, '-')
-    .replace(/[^\w-]+/g, '')
-    .replace(/--+/g, '-')
-    .replace(/^-+/, '')
-    .replace(/-+$/, '');
-}
-
-const tweetIdMask = text => removeSpecialCharacters(text).replace(/[^0-9a-zA-Z_]+/g, '');
+const tweetIdMask = text => removeSpecialCharacters(text);
 
 export {
   dateMask,
@@ -179,6 +167,5 @@ export {
   isTimeIntervalValid,
   maxValueNumberMask,
   returnObjectFromStringDate,
-  slugify,
   tweetIdMask,
 }

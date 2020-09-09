@@ -18,8 +18,10 @@ const getErrorMessage = (key) => {
 export default function validate(values) {
   const errors = {};
 
-  if (!values.retweeted_id) {
-    errors.retweeted_id = 'Insira um ID';
+  if (!values.retweeted_link) {
+    errors.retweeted_link = 'Insira um link';
+  } else if (! /^https?:\/\/[^\s$.?#].[^\s]*$/.test(values.retweeted_link)) {
+    errors.retweeted_link = 'Insira um link válido';
   }
 
   let inputDay, inputMonth, inputYear;

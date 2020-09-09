@@ -31,9 +31,10 @@
   - [x] Refatorar rotas do Express;
   - [x] `App/index.js`: shuffle array de objetos;
   - [x] Explicar a finalidade do app na seção Jumbotron
-  - [ ] Atualizar README.md;
+  - [x] Atualizar README.md;
 
 - Desenvolvimento - Parte II
+  - [ ] Permitir resorteio sem alterar dados do formulário
   - [ ] Testar acessibilidade
     - [ ] Todos os elementos são selecionáveis e passíveis de interação via teclado
     - [ ] A sequência de foco faz sentido ?

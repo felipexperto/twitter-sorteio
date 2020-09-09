@@ -6,7 +6,10 @@ import { Form, Footer, Header } from '../../components/layout';
 import { Container, Loader, RandomList } from 'components/ui';
 import * as S from './styled';
 
-import { returnObjectFromStringDate } from 'utils/helpers';
+import { 
+  cloneArrayDeeply, 
+  returnObjectFromStringDate,
+  shuffleArray } from 'utils/helpers';
 import { FormProvider } from 'context/FormContext';
 
 function App() {
@@ -68,10 +71,9 @@ function App() {
           }
         });
 
-        // TODO: shuffle array
-
-        // update state
-        setRetweets(() => retweetsFilteredInfo);
+        const clonedArr = cloneArrayDeeply(retweetsFilteredInfo);
+        const retweetsFilteredShuffled = shuffleArray(clonedArr);
+        setRetweets(() => retweetsFilteredShuffled);
       }
     })
 		.catch(err => {
@@ -91,7 +93,6 @@ function App() {
             <S.Title>Sorteador de RT</S.Title>
             <S.TitleDescription>
               Plataforma experimental e não oficial de sorteio.
-              Incididunt esse officia cupidatat proident sunt commodo et do consectetur ut exercitation mollit nulla.
             </S.TitleDescription>
           </Container>
         </S.Jumbotron>

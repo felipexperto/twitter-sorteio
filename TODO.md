@@ -26,15 +26,19 @@
   - [x] Placeholder para o local onde aparecem os resultados
   - [x] Toggle button para exibir ou ocultar inputs de horário
     - [x] Colocar label de ativado/desativado
-  - [x] Trocar campos de username e hashtag por ID do tweet;
-  - [x] Trocar campo de ID por URL (facilitar pro usuário);
+  - [x] Trocar campos de username e hashtag por ID do tweet; ¯\_(ツ)_/¯
+  - [x] Trocar campo de ID por URL (facilitar pro usuário); ¯\_(ツ)_/¯
   - [x] Refatorar rotas do Express;
-  - [ ] `App/index.js`: shuffle array de resultados;
+  - [x] `App/index.js`: shuffle array de objetos;
+  - [x] Explicar a finalidade do app na seção Jumbotron
+  - [ ] Atualizar README.md;
 
 - Desenvolvimento - Parte II
   - [ ] Testar acessibilidade
-  - [ ] Explicar a finalidade do app na seção Jumbotron
-  - [ ] UX Writing por Daniele
+    - [ ] Todos os elementos são selecionáveis e passíveis de interação via teclado
+    - [ ] A sequência de foco faz sentido ?
+    - [ ] Tags de alt, title, aria-* foram utilizadas corretamente? Como tecnologias assistivas leem esses rótulos?
+  - [?] Paginação de resultados realizando múltiplas chamadas até pegar todos os retweets de um tweet
   - [?] Spin animation no logo na seção Jumbotron
   - [?] Google Analytics
   - [?] Alterar texto do botão para 'Refazer Sorteio' ou 'Sortear novamente' após o primeiro sorteio
@@ -53,6 +57,5 @@
   - [ ] Testes unitários
   - [ ] Substituir o Axios por fetch;
   - [ ] Docker pra subir tudo de uma vez;
-  - [ ] Atualizar README.md;
   - [ ] Declarar todas as cores no theme;
   - [ ] Trocar favicon;

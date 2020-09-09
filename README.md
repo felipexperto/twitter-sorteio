@@ -23,6 +23,7 @@ Premissas `técnicas`:
  - Node.js com Express para realizar chamadas server-side que necessitam de Bearer Token sem expor dados sensíveis(chaves de autenticação);
  - React com [Create React App](https://github.com/facebook/create-react-app) no front por ser uma aplicação simples e não haver preocupações relacionados à SEO e server-side rendering;
 - Menor número de dependências possível;
+- Cobrir todos os pontos da lista de TODO.md
 
 ## **Stack**
 

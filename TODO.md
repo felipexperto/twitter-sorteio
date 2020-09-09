@@ -1,20 +1,62 @@
-- Desenvolvimento
+- Desenvolvimento - Parte I
   - [x] Passar e pegar parâmetros aqui: app.get('/api/tweets', (req, res) => {
-  - [ ] Criar formulário com parâmetros estabelecidos para filtrar os tweets.
-    - [ ] Por padrão já pega os tweets retweetados somentes;
-    - [ ] Campo aberto para inserção de hashtag: "Contém a hashtag:" #IMAGINARIA
-    - [ ] Campo aberto para inserção de id de usuário: "Retweetado de:" @FULANO
-    - [ ] Campo de data permitindo inserir um único dia para ficar alinhado com o propósito do app
-    - [ ] Campo de hora de início e hora de término
-    - [ ] Campo com número de resultados desejados c/ limite de 100: "Quantidade de resultados (limite de 100 tweets)"
-  - [ ] Estilizar títulos, hr
-    - Ref: https://getbootstrap.com/docs/4.5/examples/checkout/, https://sorteador.com.br/
-  - [ ] Testar acessibilidade
+  - [x] Criar formulário com parâmetros estabelecidos para filtrar os tweets.
+    - [x] Por padrão já pega os tweets retweetados somentes;
+    - [x] Campo aberto para inserção de hashtag: "Contém a hashtag:" #IMAGINARIA
+    - [x] Campo aberto para inserção de id de usuário: "Retweetado de:" @FULANO
+    - [x] Campo de data permitindo inserir um único dia para ficar alinhado com o propósito do app
+    - [x] Campo de hora de início e hora de término
+    - [x] Campo com número de resultados desejados c/ limite de 100: "Quantidade de resultados (limite de 100 tweets)"
+  - [x] Criar validações
+    - [x] Validação de hashtag e username. Não podem ter espaços
+    - [x] Máscara de data
+    - [x] Validação de data
+    - [x] Máscara de hora
+    - [x] Validação de hora
+    - [x] Validação de somente numeros
+  - [x] Utilizar contextAPI para compartilhar estado entre componentes
+  - [x] Estilizar títulos, hr, inputs
+    - Ref: 
+      https://getbootstrap.com/docs/4.5/examples/checkout/
+      https://sorteador.com.br/
+      https://dribbble.com/shots/8433785-Account-List-UI-Design/attachments
+  - [x] Adicionar botão de Sortear (cantos arredondados estilo Twitter);
+  - [x] Estilizar coluna da esquerda como o Twitter;
+  - [x] Procurar por `list` ou `table` UIs para exibir os resultados
+  - [x] Placeholder para o local onde aparecem os resultados
+  - [x] Toggle button para exibir ou ocultar inputs de horário
+    - [x] Colocar label de ativado/desativado
+  - [x] Trocar campos de username e hashtag por ID do tweet; ¯\_(ツ)_/¯
+  - [x] Trocar campo de ID por URL (facilitar pro usuário); ¯\_(ツ)_/¯
+  - [x] Refatorar rotas do Express;
+  - [x] `App/index.js`: shuffle array de objetos;
+  - [x] Explicar a finalidade do app na seção Jumbotron
+  - [x] Atualizar README.md;
 
+- Desenvolvimento - Parte II
+  - [ ] Permitir resorteio sem alterar dados do formulário
+  - [ ] Testar acessibilidade
+    - [ ] Todos os elementos são selecionáveis e passíveis de interação via teclado
+    - [ ] A sequência de foco faz sentido ?
+    - [ ] Tags de alt, title, aria-* foram utilizadas corretamente? Como tecnologias assistivas leem esses rótulos?
+  - [?] Paginação de resultados realizando múltiplas chamadas até pegar todos os retweets de um tweet
+  - [?] Spin animation no logo na seção Jumbotron
+  - [?] Google Analytics
+  - [?] Alterar texto do botão para 'Refazer Sorteio' ou 'Sortear novamente' após o primeiro sorteio
+  - [?] Detectar dark theme com @media e aplicar mudanças no layout;
+  - [?] Selecionar um nome decente
 
 - Pesquisa
   - [] Como vai ser o deploy?
+  - [] Como colocar as variáveis de ambiente para o CRA e para o Node?
 
 - Débito técnico
-  - [] Substituir o Axios por fetch;
-  - [] Como colocar as variáveis de ambiente para o CRA e para o Node?
+  - [ ] Prettier
+  - [ ] ESLint
+  - [ ] Stylelint
+  - [ ] Husky pre-commit hook
+  - [ ] Testes unitários
+  - [ ] Substituir o Axios por fetch;
+  - [ ] Docker pra subir tudo de uma vez;
+  - [ ] Declarar todas as cores no theme;
+  - [ ] Trocar favicon;

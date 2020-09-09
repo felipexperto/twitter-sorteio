@@ -4,12 +4,15 @@
 */
 const colors = {
   blue: '#1da1f2',
+  lightblue: '#71c9f8',
   black: '#14171a',
   darkgray: '#657786',
   lightgray: '#aab8c2',
   extralightgray: '#e1e8ed',
   extraextralightgray: '#f5f8fa', // really, Twitter?
   white: '#fff',
+  red: '#dc3545',
+  green: '#28a745',
 };
 
 /* Fonts */

@@ -1,6 +1,5 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const axios = require('axios');
 const cors = require('cors');
 
 /*
@@ -14,9 +13,10 @@ const cors = require('cors');
 
   Now you are good to go :)
 */
+const { DOMAIN, ENV, SERVER_PORT } = require('./src/config');
 
-const { TWITTER_API_KEY } = require('./env');
-const { DOMAIN, ENV, SERVER_PORT, TWEETS_URI } = require('./env-config');
+const { getAllRetweets } = require('./api/requests/retweets');
+
 const corsOrigin = (DOMAIN === 'localhost') && '*';
 const app = express();
 
@@ -29,25 +29,6 @@ app.use(cors({
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get('/api/tweets', (req, res) => {
-  const requestParams = req.url.split('?q=')[1];
-
-  if(!requestParams) res.status(500).send("Invalid parameters");
-  
-  const requestURI = `${TWEETS_URI}?q=${requestParams}`;
-  
-  axios
-    .get(requestURI, {
-      headers: {
-        "Authorization": `Bearer ${TWITTER_API_KEY}`
-      }
-    })
-    .then(response => {
-      const tweets = response.data.statuses;
-      const retweets = tweets.filter(tweet => tweet.retweeted_status && tweet);
-      res.send(retweets);
-    })
-    .catch(err => res.send(err));
-});
+app.get('/api/retweets', getAllRetweets);
 
 app.listen(SERVER_PORT, () => console.log(`Listening on port ${SERVER_PORT}`));

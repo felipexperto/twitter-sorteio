@@ -28,6 +28,7 @@
     - [x] Colocar label de ativado/desativado
   - [x] Trocar campos de username e hashtag por ID do tweet;
   - [x] Trocar campo de ID por URL (facilitar pro usuário);
+  - [x] Refatorar rotas do Express;
   - [ ] `App/index.js`: shuffle array de resultados;
 
 - Desenvolvimento - Parte II

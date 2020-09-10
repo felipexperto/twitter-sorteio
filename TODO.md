@@ -34,21 +34,22 @@
   - [x] Atualizar README.md;
 
 - Desenvolvimento - Parte II
+  - [ ] Atualizar API para versão 2.0
   - [ ] Permitir resorteio sem alterar dados do formulário
   - [ ] Testar acessibilidade
     - [ ] Todos os elementos são selecionáveis e passíveis de interação via teclado
     - [ ] A sequência de foco faz sentido ?
     - [ ] Tags de alt, title, aria-* foram utilizadas corretamente? Como tecnologias assistivas leem esses rótulos?
-  - [?] Paginação de resultados realizando múltiplas chamadas até pegar todos os retweets de um tweet
-  - [?] Spin animation no logo na seção Jumbotron
-  - [?] Google Analytics
-  - [?] Alterar texto do botão para 'Refazer Sorteio' ou 'Sortear novamente' após o primeiro sorteio
-  - [?] Detectar dark theme com @media e aplicar mudanças no layout;
-  - [?] Selecionar um nome decente
+  - [ ] **(?)** Paginação de resultados realizando múltiplas chamadas até pegar todos os retweets de um tweet
+  - [ ] **(?)** Spin animation no logo na seção Jumbotron
+  - [ ] **(?)** Google Analytics
+  - [ ] **(?)** Alterar texto do botão para 'Refazer Sorteio' ou 'Sortear novamente' após o primeiro sorteio
+  - [ ] **(?)** Detectar dark theme com @media e aplicar mudanças no layout;
+  - [ ] **(?)** Selecionar um nome decente
 
 - Pesquisa
-  - [] Como vai ser o deploy?
-  - [] Como colocar as variáveis de ambiente para o CRA e para o Node?
+  - [ ] Ferramenta de deploy? Netlify?
+    - [ ] Como colocar as variáveis de ambiente para o CRA e para o Node?
 
 - Débito técnico
   - [ ] Prettier
